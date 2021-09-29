@@ -1,0 +1,5 @@
+correr por primera vez el sgt codigo
+php artisan key:generate
+
+para compilar el codigo, ejecutar el sgt codigo
+php artisan serve --host=192.168.1.33 --port=80
