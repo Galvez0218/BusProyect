@@ -92,16 +92,6 @@ class PrincipalController extends Controller
                 'telefono'
             )
             ->get();
-
-
-        // foreach ($origenes as $origen) {
-        //     $fecha = $origen->fecha_evento;
-
-        //     $calendario[$fecha][] = $confe;
-        // }
-
-
-
         return view('destinos', compact('origenes'));
     }
     public function home($mensaje = "ACEPTADO")
