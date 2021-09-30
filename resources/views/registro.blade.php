@@ -36,22 +36,6 @@
             </div>
 
             <div class="col-md-6 login-form-2">
-                <!-- @if(count($errors) > 0) 
-                <div class="alert alert-danger">
-                    <ul>
-                    @foreach($errors -> all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                    </ul>
-                </div>
-                @endif
-                @if(\Session::has('success'))
-                <div class="alert alert-success"> 
-                    <p>{{\Session::get('success')}}</p>
-                </div>
-                @endif -->
-
-                <!-- <form action="/usuario/validar" method="get"> -->
                 <form action="{{ route('registrar.verificar_usuario') }}" method="post" autocomplete="off">
                     {{csrf_field()}}
                     <h3 class="register-heading">REGISTRARSE</h3>
@@ -135,11 +119,11 @@
             icon: 'success',
             title: '¡Registrado!',
             text: '{{session("dni_registrado")}}',
-            // allowOutsideClick: true,
-            // confirmButtonText: 'Aceptar',
+            allowOutsideClick: true,
+            confirmButtonText: 'Aceptar',
         }).then(
         function(){
-             window.location.href = "{{route('gen.login')}}";
+            //  window.location.href = "{{route('gen.login')}}";
         })
         // "/login"
     </script>

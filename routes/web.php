@@ -27,5 +27,8 @@ Route::POST('registrar/verificar_registro', [RegistrarController::class, 'verifi
 // ------------------------------------INICIAR SESION ------------------------------------
 Route::GET('/iniciar_sesion', [PrincipalController::class, 'Login'])->name('gen.login');
 Route::GET('/iniciar_sesion/validar', [PrincipalController::class, 'validarUsuario'])->name('login.validarUsuario');
-// ------------------------------------ENCUENTRANOS ------------------------------------
+Route::get('/menu_principal', [PrincipalController::class, 'home'])->name('home');
+Route::get('/cerrar_sesion', [PrincipalController::class, 'cerrar_sesion'])->name('cerrar_sesion');
+// ------------------------------------PANTALLA PRINCIPAL ------------------------------------
 Route::GET('/encuentranos', [PrincipalController::class, 'Encuentranos'])->name('gen.encuentranos');
+Route::GET('/destinos', [PrincipalController::class, 'destinos'])->name('gen.destinos');

@@ -7,22 +7,20 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Icono -->
+    <link rel="icon" href="{{asset('/icon.png')}}" type="image/png" />
     <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="{{asset('css/app.css')}}" />
     <link rel="stylesheet" href="{{asset('css/normalize.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/Estilos.css')}}" />
 
 
     <?php
+
     $archivo = basename($_SERVER['PHP_SELF']);
     $pagina = str_replace(".php", "", $archivo);
-    if ($pagina == 'invitados' || $pagina == 'index') {
+    if ($pagina == 'destinos' || $pagina == 'principal') {
         echo '<link rel="stylesheet" href="css/colorbox.css">';
-    } else if ($pagina == 'conferencia') {
-        echo '<link rel="stylesheet" href="css/lightbox.css">';
     }
     ?>
 
@@ -41,6 +39,10 @@
     <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
+
+
+
+
 
     <header class="site-header">
         <div class="hero">
@@ -72,7 +74,7 @@
         <div class="contenedor clearfix">
             <div class="logo">
                 <a href="/">
-                    <img src="images/logo.png" alt="logo del app congreso">
+                    <img src="images/logo2.png" alt="logo del app congreso">
                 </a>
             </div>
 
@@ -93,73 +95,33 @@
     </div>
     <!--.barra-->
 
-    <section>
-        <h2>Te indicamos como ubicarnnos y/o encontrarnos</h2>
+    <!-- {{-- <div class="calendario">
+        <h1>Calendariooooooo</h1>
+    </div> --}} -->
 
+    <section class="seccion contenedor">
+        <h2>Puntos de Origen</h2>
         <div class="calendario">
+            @foreach ($origenes as $origen)
 
-            <div class="diaA-lex">
-                <ul class="lista-invitados clearfix">
-                    <li>
-                        <div class="invitado">
-                            <a class="invitado-info">
-                                <img src="/images/encuentranos/huancayo.jpg" alt="Imagen invitado">
-                            </a>
-                        </div>
-                        <div class="invitado">
-                            <a class="invitado-info">
-                                <img src="/images/encuentranos/huancayo2.jpg" alt="Imagen invitado">
-                            </a>
-                        </div>
-                        <!-- END .invitado -->
-                    </li>
-
-                    <li>
-                        <div class="invitado">
-                            <a class="invitado-info">
-                                <img src="/images/encuentranos/chanchamayo.jpg" alt="Imagen invitado">
-                            </a>
-                        </div>
-                        <div class="invitado">
-                            <a class="invitado-info">
-                                <img src="/images/encuentranos/chanchamayo2.jpg" alt="Imagen invitado">
-                            </a>
-                        </div>
-                        <!-- END .invitado -->
-                    </li>
-
-                    <li>
-                        <div class="invitado">
-                            <a class="invitado-info">
-                                <img src="/images/encuentranos/satipo.jpg" alt="Imagen invitado">
-                            </a>
-                        </div>
-                        <div class="invitado">
-                            <a class="invitado-info">
-                                <img src="/images/encuentranos/satipo2.jpg" alt="Imagen invitado">
-                            </a>
-                        </div>
-                        <!-- END .invitado -->
-                    </li>
-
-                    <li>
-                        <div class="invitado">
-                            <a class="invitado-info">
-                                <img src="/images/encuentranos/pichanaki.jpg" alt="Imagen invitado">
-                            </a>
-                        </div>
-                        <div class="invitado">
-                            <a class="invitado-info">
-                                <img src="/images/encuentranos/pangoa2.jpg" alt="Imagen invitado">
-                            </a>
-                        </div>
-                        <!-- END .invitado -->
-                    </li>
+            <div class="dia">
+                <p class="titulo">{{$origen->nombre_origen}}</p>
+                <p class="hora">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    {{$origen->direcion}}
+                </p>
+                <p class="hora">
+                    <i class="fas fa-phone-square-alt" aria-hidden="true"></i>
+                    {{$origen->telf}}
+                </p>
+                
             </div>
+            @endforeach
         </div>
 
-
     </section>
+
+  
 
 
 
@@ -283,7 +245,7 @@
         ga.l = +new Date;
         ga('create', 'UA-XXXXX-Y', 'auto');
         ga('set', 'transport', 'beacon');
-        ga('send', 'pageview')
+        ga('send', 'pageview');
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>

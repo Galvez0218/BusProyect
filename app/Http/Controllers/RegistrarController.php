@@ -15,6 +15,7 @@ class RegistrarController extends Controller
 {
     // use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function registrar(){
+        // dd(session()->all());
         return view('registro');
     }  
 
@@ -50,12 +51,6 @@ class RegistrarController extends Controller
                                             'clave' => $clave,
                                         ));
 
-
-                                        // Permisos_Usuario::create(array(
-                                        //     'dni' => $dni,
-                                        //     'id_permiso' => 1,
-                                        // ));
-                                        // Session::put('dni_registrado', $dni);
                                         Session::flash('dni_registrado', 'Usuario registrado');
                                         return redirect('/registrar');
                                         exit();

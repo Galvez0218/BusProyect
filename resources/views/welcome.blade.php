@@ -96,7 +96,7 @@
             </div>
 
             <nav class="navegacion-principal clearfix">
-                <a href="#">Destinos</a>
+                <a href="{{route('gen.destinos')}}">Destinos</a>
                 <a href="{{route('gen.encuentranos')}}">Encuentranos</a>
                 <a href="{{route('gen.registrar')}}">Registrarse</a>
                 <a href="{{route('gen.login')}}">Iniciar sesion</a>

@@ -1,0 +1,533 @@
+a:link {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: none
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+:root {
+
+    --colorCreditos1: #337BA3;
+    --colorCreditos2: #53c3ff;
+    --colorOperaciones1: #70639E;
+    --colorOperaciones2: #b6a2ff;
+    --colorGth1: #D6975F;
+    --colorGth2: #fab06f;
+    --colorLogistica1: #71BC9C;
+    --colorLogistica2: #95ffd1;
+    --colorContabilidad1: #D64355;
+    --colorContabilidad2: #ff576b;
+
+    --tamañoLetraInput: 13px;
+    --shimaMora: #682584;
+    --shimaPlomo: #9B979F;
+    --shimaAmarillo: #FFBD11;
+    --shimaMoraDark:#24142b;
+}
+
+
+html {
+
+    font-size: 62.5%;
+    /*Rest para REMS - 62.5% = 10px de 16px*/
+
+}
+
+body {
+    margin: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: var(--shimaPlomo);
+}
+
+.header {
+    text-align: center;
+    height: 6rem;
+}
+
+.logo-principal {
+    margin-top: 50rem;
+    width: 70%;
+}
+
+.boton {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    padding: 10px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 100px;
+    font-family: 'Franklin_Gothic_Demi_Cond';
+    font-size: 30px;
+    color: white;
+    font-display: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-transform: uppercase;
+    float: left;
+}
+
+
+
+.color-creditos {
+    background-color: var(--shimaAmarillo);
+}
+
+.color-operaciones {
+    background-color: var(--colorOperaciones1);
+}
+
+.color-gth {
+    background-color: var(--shimaMora);
+}
+
+.color-logistica {
+    background-color: var(--shimaAmarillo);
+}
+
+.color-contabilidad {
+    background-color: var(--colorContabilidad1);
+}
+
+.color-creditos:hover {
+    box-shadow: inset 0 0 130px var(--colorCreditos2);
+    cursor: pointer;
+}
+
+.color-operaciones:hover {
+    box-shadow: inset 0 0 130px var(--colorOperaciones2);
+    cursor: pointer;
+}
+
+.color-gth:hover {
+    box-shadow: inset 0 0 130px var(--colorGth2);
+    cursor: pointer;
+}
+
+
+.color-logistica:hover {
+    box-shadow: inset 0 0 130px var(--colorLogistica2);
+    cursor: pointer;
+}
+
+.color-contabilidad:hover {
+    box-shadow: inset 0 0 130px var(--colorContabilidad2);
+    cursor: pointer;
+}
+
+.sub_boton {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    font-family: 'Franklin_Gothic_Demi_Cond';
+    font-size: 17px;
+    color: #FFF;
+    font-display: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-transform: uppercase;
+    float: left;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+
+
+
+
+.sub_boton:hover {
+    cursor: pointer;
+}
+
+a {
+    color: white;
+}
+
+a.sub_text {
+    color: white;
+    position: relative;
+    font-size: 18px;
+}
+
+
+
+/* Wobble Vertical */
+@-webkit-keyframes hvr-wobble-vertical {
+    16.65% {
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
+    }
+
+    33.3% {
+        -webkit-transform: translateY(-6px);
+        transform: translateY(-6px);
+    }
+
+    49.95% {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+
+    66.6% {
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+    }
+
+    83.25% {
+        -webkit-transform: translateY(1px);
+        transform: translateY(1px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+
+
+@keyframes hvr-wobble-vertical {
+    16.65% {
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
+    }
+
+    33.3% {
+        -webkit-transform: translateY(-6px);
+        transform: translateY(-6px);
+    }
+
+    49.95% {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+
+    66.6% {
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+    }
+
+    83.25% {
+        -webkit-transform: translateY(1px);
+        transform: translateY(1px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.sub_boton {
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+
+}
+
+.sub_boton:hover,
+.sub_boton:focus,
+.sub_boton:active {
+    -webkit-animation-name: hvr-wobble-vertical;
+    animation-name: hvr-wobble-vertical;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+
+
+.dropdown-menu {
+    background-color: transparent;
+    border-color: transparent;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+ul.dropdown-menu.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.btn.focus,
+.btn:focus {
+    box-shadow: none;
+}
+
+#content_Principal {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.version {
+    position: fixed;
+    font-size: 1.7rem;
+    color: rgba(229, 224, 224, 0.212);
+    bottom: 0rem;
+    left: 0.5rem;
+    text-align: left;
+    font-family: 'Franklin_Gothic_Demi_Cond';
+}
+
+.btn-primary:focus {
+    background-color: #14244C !important;
+    border-color: #14244C !important;
+}
+
+
+.btn-close {
+    position: fixed;
+    right: 2rem;
+    bottom: 0.5rem;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(90% - 5px);
+    font-family: 'Franklin_Gothic_Demi_Cond';
+    background-color: #14244C;
+    border: #14244C;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+.btn-close:hover {
+    background-color: white;
+}
+
+.btn-close:hover>i {
+    color: #14244C;
+}
+
+.btn-close i {
+    font-size: 20px;
+    color: white;
+}
+
+.title-swal {
+    font-size: 30px;
+}
+
+.text-swal {
+    font-size: 25px;
+}
+
+/* TOGGLE */
+
+.menu-button {
+    width: 40px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.dropdown-toggle-split {
+    /* background-color:#89bd29; */
+    background-color: transparent;
+    border: none;
+}
+
+.dropdown-toggle-split i {
+    font-size: 18px;
+}
+
+
+.dropdown-toggle-split:hover {
+    background-color: transparent;
+}
+
+.dropdown-toggle-split:hover>i {
+    color: #89bd29;
+}
+
+.btn-secondary:focus {
+    background-color: transparent !important;
+    color: #89bd29 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.submenu-button {
+
+    font-family: 'Franklin_Gothic_Demi_Cond';
+    font-size: 15px;
+    text-align: center;
+    border-radius: 5px;
+    background: #224791;
+    color: white !important;
+}
+
+.btn-secondary.dropdown-toggle {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.submenu-button:hover {
+    background-color: #89bd29;
+}
+
+/* ------- */
+
+@media screen and (max-width: 992px) {
+
+    .boton {
+        font-size: 25px;
+        width: 18rem;
+        height: 18rem;
+    }
+
+    .logo-principal {
+        margin-top: 1rem;
+        width: 50%;
+    }
+
+    #btnCreditos:hover {
+        box-shadow: none;
+    }
+
+    #btnOperaciones:hover {
+        box-shadow: none;
+    }
+
+    #btnGth:hover {
+        box-shadow: none;
+    }
+
+    #btnLogistica:hover {
+        box-shadow: none;
+    }
+
+    #btnContabilidad:hover {
+        box-shadow: none;
+    }
+
+    .version {
+        font-size: 1rem;
+        right: 2rem;
+        bottom: 0rem;
+    }
+
+
+    .btn-close {
+        width: 20px;
+        height: 20px;
+    }
+
+    .btn-close i {
+        font-size: 10px;
+    }
+
+    .title-swal {
+        font-size: 20px;
+    }
+
+    .text-swal {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-height:700px) {
+    .version {
+        right: 0.5rem;
+        bottom: 0rem;
+    }
+}
+
+
+@media (max-width:900px) and (min-height:220px) and (orientation:landscape) {
+
+
+    #content_Principal {
+        margin-top: 25px;
+    }
+
+    .logo-principal {
+        margin-top: 0.5rem;
+    }
+
+    .boton {
+        font-size: 1.4rem;
+        width: 10rem;
+        height: 10rem;
+    }
+
+    a.sub_text {
+        font-size: 1.2rem;
+    }
+    #btnGestionSuministros{
+      font-size: 8px;
+    }
+}
+
+@media (max-height: 300px) {
+
+    .header {
+        height: 3.5rem;
+    }
+
+    #content_Principal {
+        margin-top: 0px;
+    }
+
+    .logo-principal {
+        width: 40%;
+    }
+
+    .boton {
+        font-size: 0.9rem;
+        width: 7rem;
+        height: 7rem;
+    }
+
+    a.sub_text {
+        font-size: 0.9rem;
+    }
+
+
+}
+
+
+@media (min-height:600px) and (width:1008px) {
+
+    #content_Principal {
+        margin-top: 10%;
+    }
+
+    .boton {
+        font-size: 2.5rem;
+        width: 17rem;
+        height: 17rem;
+    }
+
+}
