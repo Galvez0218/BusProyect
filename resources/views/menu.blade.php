@@ -70,8 +70,8 @@
 
     <div class="content" id='content_Principal' style='display:block'>
         <div class="btn-group">
-            <a class="btn" href="#">
-                <div class="boton color-creditos" id="btnCreditos">CRÉDITOS</div>
+            <a class="btn" href="{{route('menu.index')}}">
+                <div class="boton color-creditos" id="btnCreditos">MIS DATOS</div>
                 <span class="caret"></span>
             </a>
         </div>

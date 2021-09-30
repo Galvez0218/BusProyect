@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\RegistrarController;
+use App\Http\Controllers\MisdatosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,7 @@ Route::get('/cerrar_sesion', [PrincipalController::class, 'cerrar_sesion'])->nam
 // ------------------------------------PANTALLA PRINCIPAL ------------------------------------
 Route::GET('/encuentranos', [PrincipalController::class, 'Encuentranos'])->name('gen.encuentranos');
 Route::GET('/destinos', [PrincipalController::class, 'destinos'])->name('gen.destinos');
+
+//------------------------------ MIS DATOS
+Route::GET('/menu_principal/mi_menu', [MisdatosController::class, 'index'])->name('menu.index');
+Route::GET('/menu_principal/menu/mis_datospersonales', [MisdatosController::class, 'mis_datos_personales'])->name('menu.mis_datos_personales');

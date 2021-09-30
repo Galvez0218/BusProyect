@@ -151,4 +151,23 @@ class PrincipalController extends Controller
     }
     // --------------------------------------------------------------------------
 
+    // --------------------FUNCIÓN PARA VERIFICAR PERMISO-----------------------
+    public function verificarPermiso($dni, $modulo, $area)
+    {
+
+        $band = 0;
+
+        // $id_permiso = Permiso::select('id_permiso')->where('modulo', $modulo)->where('area', $area)->get();
+
+        // $result = Usuarios_permiso::select('id_usuario_permiso')
+        //     ->where('usuarios_permisos.id_permiso', $id_permiso[0]['id_permiso'])->where('usuarios_permisos.dni', $dni)->get();
+
+        // if (empty($result[0]['id_usuario_permiso'])) {
+        //     $band = 0;
+        // } else {
+        //     $band = 1;
+        // }
+
+        return $band;
+    }
 }
