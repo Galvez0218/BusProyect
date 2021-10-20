@@ -44,17 +44,17 @@ class HandleInertiaRequests extends Middleware
             $datos_aplicacion = null;
             $version = null;
         } else {
-            // $permisos = DB::table('usuarios_permisos')
-            //     ->join('permisos', 'usuarios_permisos.id_permiso', '=', 'permisos.id_permiso')
-            //     ->select('permisos.area', 'permisos.modulo')
-            //     ->where('usuarios_permisos.dni', '=', $request->session()->only(['usuario_dni']))
-            //     ->get();
-            // $datos_aplicacion = DB::table('datos_aplicacion')->get();
-            // $version = DB::select("SELECT * FROM versiones ORDER by id_version DESC LIMIT 1");
-            // foreach ($permisos as $permiso) {
-            //     $permisos_array[] = $permiso->area . '/' . $permiso->modulo;
+            $permisos = DB::table('usuarios_permisos')
+                ->join('permisos', 'usuarios_permisos.id_permiso', '=', 'permisos.id_permiso')
+                ->select('permisos.area', 'permisos.modulo')
+                ->where('usuarios_permisos.dni', '=', $request->session()->only(['usuario_dni']))
+                ->get();
+            $datos_aplicacion = DB::table('datos_aplicacion')->get();
+            //$version = DB::select("SELECT * FROM versiones ORDER by id_version DESC LIMIT 1");
+            foreach ($permisos as $permiso) {
+                $permisos_array[] = $permiso->area . '/' . $permiso->modulo;
             }
-
+        }
 
         return array_merge(parent::share($request), [
             //

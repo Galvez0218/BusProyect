@@ -31,7 +31,7 @@
     <script src="https://kit.fontawesome.com/1a2bd5a108.js" crossorigin="anonymous"></script>
 
 
-
+    @routes
 
 </head>
 

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Encuentranos</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,9 +32,7 @@
     <meta name="theme-color" content="#fafafa">
     <script src="https://kit.fontawesome.com/1a2bd5a108.js" crossorigin="anonymous"></script>
 
-
-
-
+    @routes
 </head>
 
 <body class="<?php echo $pagina ?>">

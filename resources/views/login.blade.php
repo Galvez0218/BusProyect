@@ -21,6 +21,7 @@
   <script src="js/sweetalert2.js"></script>
 
   <title>Login</title>
+  @routes
 </head>
 
 <body>

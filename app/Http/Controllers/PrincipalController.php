@@ -102,12 +102,12 @@ class PrincipalController extends Controller
         
         $existe_usuario = Usuario::select('dni')->where('dni', $dni_registrado)->get();
 
+
         if (empty($x['usuario_dni'])) {
             return view('welcome');
         } else {
-
-            return view('menu')->with('mensaje', $mensaje);;
-            if(count($existe_usuario) == 1){
+            return view('menu')->with('mensaje', $mensaje);
+            /*if(count($existe_usuario) == 1){
                 $pagado = Usuario::select('pagado')->where('dni', $dni_registrado)->get();
                
                 if (empty($x['email'])) {
@@ -118,7 +118,7 @@ class PrincipalController extends Controller
                     // return view('home')->with('mensaje', $mensaje);
                     return View::make('menu', array('mensaje' => $mensaje, 'pagado' => $pagado));
                 }
-            } 
+            } */
         }
 
         

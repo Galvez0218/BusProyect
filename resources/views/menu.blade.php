@@ -18,6 +18,8 @@
     <title>Home</title>
     <script src="{{asset('js/sweetalert2.js')}}"></script>
     <script src="{{asset('js/jquery.js')}}"></script>
+
+    @routes
 </head>
 
 <body>

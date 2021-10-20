@@ -35,5 +35,5 @@ Route::GET('/encuentranos', [PrincipalController::class, 'Encuentranos'])->name(
 Route::GET('/destinos', [PrincipalController::class, 'destinos'])->name('gen.destinos');
 
 //------------------------------ MIS DATOS
-Route::GET('/menu_principal/mi_menu', [MisdatosController::class, 'index'])->name('menu.index');
+Route::GET('/menu_principal/mi_menu', [MisdatosController::class, 'Index'])->name('menu.index');
 Route::GET('/menu_principal/menu/mis_datospersonales', [MisdatosController::class, 'mis_datos_personales'])->name('menu.mis_datos_personales');

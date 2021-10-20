@@ -1,7 +1,7 @@
 <template>
   <div class="card-header d-flex align-items-center justify-content-between">
     <strong>{{ title }}</strong>
-    <inertia-link :href="$route('gth.index')" style="float: right !important">
+    <inertia-link :href="$route('menu.index')" style="float: right !important">
       <button type="button" class="btn btn-action" style="border-radius: 50%">
         <span class="icon text-white">
           <i class="fas fa-times"></i>

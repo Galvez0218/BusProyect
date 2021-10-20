@@ -9,15 +9,12 @@ use App\Http\Controllers\Controller;
 //MODELS
 use App\Models\Usuario;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 
 class MisdatosController extends Controller
 {
 
-    public function index()
+    public function Index()
     {
         
         // $x = session()->all();
@@ -29,8 +26,9 @@ class MisdatosController extends Controller
             // $band = (new PermisosController)->verificarPermiso($x['usuario_dni'], 'MI PANEL GTH', 'GTH');
             
             // if ($band == 1) {
-                // return Inertia::render('Misdatos/prueba');
-                dd(Inertia::render('Misdatos/prueba'));
+                // return redirect()->route('menu.index');
+                return Inertia::render('algoextra/prueba');
+                //dd(Inertia::render('Misdatos/prueba'));
             // } else {
             //     $mensaje = 'RECHAZADO';
             //     return (new UsuarioController)->home($mensaje);

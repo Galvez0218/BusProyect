@@ -32,7 +32,7 @@
 
 
 
-
+    @routes
 </head>
 
 <body class="<?php echo $pagina ?>">
