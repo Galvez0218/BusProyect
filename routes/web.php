@@ -37,3 +37,5 @@ Route::GET('/destinos', [PrincipalController::class, 'destinos'])->name('gen.des
 //------------------------------ MIS DATOS
 Route::GET('/menu_principal/mi_menu', [MisdatosController::class, 'Index'])->name('menu.index');
 Route::GET('/menu_principal/menu/mis_datospersonales', [MisdatosController::class, 'mis_datos_personales'])->name('menu.mis_datos_personales');
+Route::POST('/menu_principal/menu/mis_datospersonales/verificar', [MisdatosController::class, 'verificar_mi_usuario'])->name('mis_datos_personales.verificar');
+Route::POST('/menu_principal/menu/mis_datospersonales/guardar', [MisdatosController::class, 'guardar_mi_usuario'])->name('mis_datos_personales.guardar');

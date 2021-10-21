@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\View;
 
 //MODELS
 use App\models\Usuario;
+use App\models\Permisos\Permiso;
+use App\models\Permisos\Permisos_Usuario;
 
 class PrincipalController extends Controller
 {
@@ -157,17 +159,19 @@ class PrincipalController extends Controller
 
         $band = 0;
 
-        // $id_permiso = Permiso::select('id_permiso')->where('modulo', $modulo)->where('area', $area)->get();
+        $id_permiso = Permiso::select('id')->where('modulo', $modulo)->where('area', $area)->get();
 
-        // $result = Usuarios_permiso::select('id_usuario_permiso')
-        //     ->where('usuarios_permisos.id_permiso', $id_permiso[0]['id_permiso'])->where('usuarios_permisos.dni', $dni)->get();
-
-        // if (empty($result[0]['id_usuario_permiso'])) {
-        //     $band = 0;
-        // } else {
-        //     $band = 1;
-        // }
+        $result = Permisos_Usuario::from('permisos_usuarios as pu')
+        ->select('pu.id')
+            ->where('pu.id_permiso', $id_permiso[0]['id'])->where('pu.dni', $dni)->get();
+        if (empty($result[0]['id'])) {
+            $band = 0;
+        } else {
+            $band = 1;
+        }
 
         return $band;
     }
+
+    
 }

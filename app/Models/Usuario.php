@@ -17,6 +17,8 @@ class Usuario extends Model
         'apellidoMaterno',
         'email',
         'dni',
+        'telefono',
+        'genero',
         'clave',
         'totalPago',
         'pagado',

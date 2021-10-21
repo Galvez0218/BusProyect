@@ -112,7 +112,7 @@
                 </p>
                 <p class="hora">
                     <i class="fas fa-phone-square-alt" aria-hidden="true"></i>
-                    {{$origen->telf}}
+                    {{$origen->telefono}}
                 </p>
                 
             </div>

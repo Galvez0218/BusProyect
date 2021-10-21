@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Permisos\Permisos_Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -49,6 +49,11 @@ class RegistrarController extends Controller
                                             'dni' => $dni,
                                             'email' => $email,
                                             'clave' => $clave,
+                                        ));
+                                        
+                                        Permisos_Usuario::create(array(
+                                            'dni' => $dni,
+                                            'id_permiso' => 1,
                                         ));
 
                                         Session::flash('dni_registrado', 'Usuario registrado');

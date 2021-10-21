@@ -2120,6 +2120,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2453,216 +2456,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2677,41 +2470,25 @@ var diferentThanZero = function diferentThanZero(value) {
     headerClose: _Components_header_close__WEBPACK_IMPORTED_MODULE_1__.default
   },
   props: {
-    mi_usuario: Array,
-    distritos: Array,
-    provincias: Array,
-    departamentos: Array
+    mi_usuario: Array
   },
   data: function data() {
     return {
       submited: false,
-      distritos_filtrados: this.distritos,
-      provincias_filtradas: this.provincias,
       frmDatosUsuario: {
         modo: "VISTA",
         dni: this.mi_usuario[0].dni,
-        usuario: this.mi_usuario[0].usuario,
         nombres: this.mi_usuario[0].nombres,
         apellidoPaterno: this.mi_usuario[0].apellidoPaterno,
         apellidoMaterno: this.mi_usuario[0].apellidoMaterno,
-        sexo: this.mi_usuario[0].sexo,
-        direccion: this.mi_usuario[0].direccion,
-        id_distrito: this.mi_usuario[0].id_distrito,
-        id_provincia: this.mi_usuario[0].id_provincia,
-        id_departamento: this.mi_usuario[0].id_departamento,
-        fechaNacimiento: this.mi_usuario[0].fechaNacimiento,
+        sexo: this.mi_usuario[0].genero,
         telefono: this.mi_usuario[0].telefono,
-        correoPrincipal: this.mi_usuario[0].correoPrincipal,
-        nombre_cargo: this.mi_usuario[0].nombre_cargo,
-        nombre_agencia: this.mi_usuario[0].nombre_agencia
+        correoPrincipal: this.mi_usuario[0].email
       }
     };
   },
   validations: {
     frmDatosUsuario: {
-      usuario: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
-      },
       nombres: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
@@ -2721,27 +2498,8 @@ var diferentThanZero = function diferentThanZero(value) {
       apellidoMaterno: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
-      sexo: {
-        noZero: diferentThanZero
-      },
-      direccion: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
-      },
-      id_distrito: {
-        noZero: diferentThanZero
-      },
-      id_provincia: {
-        noZero: diferentThanZero
-      },
-      id_departamento: {
-        noZero: diferentThanZero
-      },
-      fechaNacimiento: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
-      },
-      telefono: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
-      },
+      // sexo: { noZero: diferentThanZero },
+      // telefono: { required },
       correoPrincipal: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
       }
@@ -2753,13 +2511,6 @@ var diferentThanZero = function diferentThanZero(value) {
     if (screen.width < 1000) {
       $("#tblHorarioAsignado").addClass("table-responsive");
     }
-
-    this.provincias_filtradas = this.provincias.filter(function (item) {
-      return item.department_id == self.frmDatosUsuario.id_departamento;
-    });
-    this.distritos_filtrados = this.distritos.filter(function (item) {
-      return item.department_id == self.frmDatosUsuario.id_departamento;
-    });
   },
   methods: {
     hidenav: function hidenav() {
@@ -2767,37 +2518,6 @@ var diferentThanZero = function diferentThanZero(value) {
     },
     shownav: function shownav() {
       return this.$refs.layout.show_nav();
-    },
-    FiltrarProvincias: function FiltrarProvincias(e) {
-      var id_departamento = e.target.value;
-
-      if (!id_departamento == 0) {
-        this.provincias_filtradas = this.provincias.filter(function (item) {
-          return item.department_id == id_departamento;
-        });
-        this.distritos_filtrados = this.distritos.filter(function (item) {
-          return item.department_id == id_departamento;
-        });
-      } else {
-        this.provincias_filtradas = this.provincias;
-        this.distritos_filtrados = this.distritos;
-      }
-
-      this.frmDatosUsuario.id_provincia = 0;
-      this.frmDatosUsuario.id_distrito = 0;
-    },
-    FiltrarDistritos: function FiltrarDistritos(e) {
-      var id_provincia = e.target.value;
-
-      if (!id_provincia == 0) {
-        this.distritos_filtrados = this.distritos.filter(function (item) {
-          return item.province_id == id_provincia;
-        });
-      } else {
-        this.distritos_filtrados = this.distritos;
-      }
-
-      this.frmDatosUsuario.id_distrito = 0;
     },
     ModoEditar: function ModoEditar() {
       this.frmDatosUsuario.modo = "EDITAR";
@@ -2809,54 +2529,40 @@ var diferentThanZero = function diferentThanZero(value) {
       if (this.$v.frmDatosUsuario.$invalid) {
         return false;
       } else {
-        axios.post(route("mis_datos_personales.verificar"), {
-          usuario: self.frmDatosUsuario.usuario
-        }).then(function (response) {
-          var resultado = response.data;
+        Swal.fire({
+          title: "GUARDAR CAMBIOS",
+          text: "¿Desea continuar?",
+          confirmButtonText: '<i class="fas fa-check" style="color:white;"></i>   Si',
+          confirmButtonColor: "var(--colorAlto)",
+          showCancelButton: true,
+          cancelButtonText: '<i class="fas fa-times"></i>   No',
+          cancelButtonColor: "var(--plomoOscuroEmpresarial)",
+          allowOutsideClick: false,
+          preConfirm: function preConfirm(result) {
+            axios.post(route("mis_datos_personales.guardar"), self.frmDatosUsuario).then(function (response) {
+              var resultado = response.data;
 
-          if (resultado == "INCORRECTO") {
-            Swal.fire({
-              icon: "error",
-              title: "¡Ups!",
-              text: "El USUARIO ingresado, ya está registrado, intente nuevamente."
-            });
-            return false;
-          } else if (resultado == "CORRECTO") {
-            Swal.fire({
-              title: "GUARDAR CAMBIOS",
-              text: "¿Desea continuar?",
-              confirmButtonText: '<i class="fas fa-check" style="color:white;"></i>   Si',
-              confirmButtonColor: "var(--colorAlto)",
-              showCancelButton: true,
-              cancelButtonText: '<i class="fas fa-times"></i>   No',
-              cancelButtonColor: "var(--plomoOscuroEmpresarial)",
-              allowOutsideClick: false,
-              preConfirm: function preConfirm(result) {
-                axios.post(route("mis_datos_personales.guardar"), self.frmDatosUsuario).then(function (response) {
-                  var resultado = response.data;
-
-                  if (resultado == "EXITO") {
-                    Swal.fire({
-                      icon: "success",
-                      title: "¡EXITO!",
-                      text: "Información registrada",
-                      allowOutsideClick: false,
-                      preConfirm: function preConfirm(result) {
-                        self.$inertia.get(route("mi_panel_gth.mis_datos_personales"));
-                      }
-                    });
-                  } else {
-                    Swal.fire({
-                      icon: "error",
-                      title: "¡Ups!",
-                      text: "Algo salió mal"
-                    });
+              if (resultado == "EXITO") {
+                Swal.fire({
+                  icon: "success",
+                  title: "¡EXITO!",
+                  text: "Información registrada",
+                  allowOutsideClick: false,
+                  preConfirm: function preConfirm(result) {
+                    self.$inertia.get(route("menu.mis_datos_personales"));
                   }
+                });
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "¡Ups!",
+                  text: "Algo salió mal"
                 });
               }
             });
           }
-        });
+        }); //   }
+        // });
       }
     },
     CancelarCambios: function CancelarCambios() {
@@ -3074,7 +2780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n:root {\r\n  --tamañoLetraInput: 13px;\r\n  --shimaMora: #682584;\r\n  --shimaPlomo: #9b979f;\r\n  --shimaAmarillo: #ffbd11;\r\n  --shimaMoraDark: #24142b;\r\n  --colorBajo: #feebda !important;\r\n  --colorMedio: #f5ac6b !important;\r\n  --colorAlto: #da7925 !important;\n}\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  -ms-box-sizing: border-box;\r\n  box-sizing: border-box;\n}\nbody,\r\nhtml {\r\n  width: 100%;\r\n  height: 100%;\n}\nbody {\r\n  font-size: 15px;\r\n  color: #666;\n}\n.content {\r\n  margin-left: 0px !important;\r\n  height: 200px;\n}\na {\r\n  text-decoration: none;\n}\na:link,\r\na:visited,\r\na:active {\r\n  text-decoration: none;\n}\n.container {\r\n  max-width: 80%;\r\n  margin: 0 auto;\r\n  width: 100%;\r\n  margin-left: 20%;\n}\n.nav-fostrap {\r\n  display: block;\r\n  margin-bottom: 15px 0;\r\n\r\n  background: var(--shimaAmarillo);\r\n  -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  -o-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  border-bottom-left-radius: 20px;\r\n\r\n  width: 100%;\n}\n.nav-fostrap ul {\r\n  list-style-type: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  display: block;\n}\n.nav-fostrap li {\r\n  list-style-type: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  display: inline-block;\r\n  position: relative;\r\n  font-size: 14;\r\n  color: white;\n}\n.nav-fostrap li a {\r\n  padding: 15px 20px;\r\n  font-size: 14;\r\n  color: white;\r\n  display: inline-block;\r\n  outline: 0;\r\n  font-weight: 400;\n}\n.nav-fostrap li:hover ul.dropdown {\r\n  display: block;\n}\n.nav-fostrap li ul.dropdown {\r\n  position: absolute;\r\n  display: none;\r\n  width: 280px;\r\n  background: var(--shimaAmarillo);\r\n  -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  -o-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  padding-top: 0;\r\n  border-bottom-left-radius: 10px;\r\n  border-bottom-right-radius: 10px;\n}\n.nav-fostrap li ul.dropdown li {\r\n  display: block;\r\n  list-style-type: none;\n}\n.nav-fostrap li ul.dropdown li a {\r\n  padding: 8px 15px;\r\n  font-size: 15px;\r\n  color: var(--shimaMoraDark);\r\n  display: block;\r\n  font-weight: 400;\n}\n.nav-fostrap li ul.dropdown li:last-child a {\r\n  border-bottom: none;\n}\n.nav-fostrap li:hover a {\r\n  background: white;\r\n  color: var(--shimaAmarillo);\n}\n.nav-fostrap li:first-child:hover a {\r\n  border-radius: 3px 0 0 3px;\n}\n.nav-fostrap li ul.dropdown li:hover a {\r\n  background: var(--shimaMoraDark);\r\n  color: white !important;\n}\n.nav-fostrap li ul.dropdown li:first-child:hover a {\r\n  border-radius: 0;\n}\n.nav-fostrap li:hover .arrow-down {\r\n  border-top: 5px solid var(--shimaAmarillo);\n}\n.arrow-down {\r\n  width: 0;\r\n  height: 0;\r\n  border-left: 5px solid transparent;\r\n  border-right: 5px solid transparent;\r\n  border-top: 5px solid #def1f0;\r\n  position: relative;\r\n  top: 15px;\r\n  right: -5px;\r\n  content: \"\";\n}\n.title-mobile {\r\n  display: none;\n}\n.fixed-top {\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  left: 0;\n}\nfooter {\r\n  position: absolute;\r\n  bottom: 0;\r\n  width: 90%;\r\n  border-top-right-radius: 20px;\r\n\r\n  color: white;\n}\n.footer-text {\r\n  border-top-right-radius: 20px;\r\n  background: var(--shimaMoraDark);\r\n  font-size: 0.7rem;\r\n  color: var(--shimaAmarillo);\r\n  font-weight: bolder;\n}\n.logo-system {\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 5%;\n}\n.modal-content {\r\n  top: 8% !important;\n}\n.slot-content {\r\n  position: relative;\r\n  overflow-x: hidden;\n}\n.slot-content::-webkit-scrollbar {\r\n  width: 0.5rem;\n}\n.slot-content::-webkit-scrollbar-track {\r\n  background: transparent;\n}\n.slot-content::-webkit-scrollbar-thumb {\r\n  background: var(--shimaMoraDark);\r\n  border-radius: 5px;\n}\n.slot-content::-webkit-scrollbar-thumb:active {\r\n  background: var(--shimaMoraDark);\n}\n.always-over {\r\n  z-index: 20 !important;\n}\n.slot_body {\r\n  width: 80% !important;\r\n\r\n  margin-top: 2%;\r\n  margin-left: 10%;\r\n  z-index: 2 !important;\n}\n.slot-content {\r\n  overflow-y: scroll;\r\n  height: 85%;\n}\nbody.swal2-height-auto {\r\n  height: 100% !important;\n}\ntd:hover {\r\n  background-color: #c3e2ff;\n}\n@media only screen and (max-width: 900px) {\n.nav-fostrap {\r\n    background: #fff;\r\n    opacity: 0.95;\r\n    width: 300px;\r\n    height: 80% !important;\r\n    top: 10% !important;\r\n    display: block;\r\n    position: fixed;\r\n    left: -300px;\r\n    top: 0px;\r\n    transition: left 0.25s ease;\r\n    margin: 0;\r\n    border: 0;\r\n    border-radius: 0;\r\n    overflow-y: auto;\r\n    overflow-x: hidden;\r\n    height: 100%;\r\n    border-top-right-radius: 10px;\r\n    border-bottom-right-radius: 10px;\n}\n.title-mobile {\r\n    position: fixed;\r\n    display: block;\r\n    top: 10px;\r\n    left: 100px;\r\n    right: 100px;\r\n    text-align: center;\n}\n.nav-fostrap.visible {\r\n    left: 0px;\r\n    transition: left 0.25s ease;\n}\n.nav-bg-fostrap {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    width: 100%;\r\n    height: 50px;\r\n    margin: 0;\r\n    position: absolute;\r\n    top: 0px;\r\n    left: 0px;\r\n    background: var(--shimaAmarillo);\r\n    padding: 12px 0 0 10px;\r\n    -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n    -o-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n    border-bottom-left-radius: 20px;\r\n    border-bottom-right-radius: 20px;\n}\n.navbar-fostrap {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    height: 50px;\r\n    cursor: pointer;\r\n    margin: 0;\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    padding: 12px;\n}\n.navbar-fostrap span {\r\n    height: 2px;\r\n    background: #fff;\r\n    margin: 5px;\r\n    display: block;\r\n    width: 20px;\n}\n.navbar-fostrap span:nth-child(2) {\r\n    width: 20px;\n}\n.navbar-fostrap span:nth-child(3) {\r\n    width: 20px;\n}\n.nav-fostrap ul {\r\n    padding-top: 20px;\n}\n.nav-fostrap li {\r\n    display: block;\n}\n.nav-fostrap li a {\r\n    display: block;\r\n    color: #505050;\r\n    font-weight: 600;\n}\n.nav-fostrap li:first-child:hover a {\r\n    border-radius: 0;\n}\n.nav-fostrap li ul.dropdown {\r\n    position: relative;\n}\n.nav-fostrap li ul.dropdown li a {\r\n    background: white !important;\r\n    border-bottom: none;\r\n    color: var(--shimaMoraDark) !important;\n}\n.nav-fostrap li:hover a {\r\n    background: var(--shimaAmarillo);\r\n    color: #fff !important;\n}\n.nav-fostrap li ul.dropdown li:hover a {\r\n    background: var(--shimaMoraDark) !important;\r\n    color: #fff !important;\n}\n.nav-fostrap li ul.dropdown li a {\r\n    padding: 5px 5px 5px 30px;\n}\n.nav-fostrap li:hover .arrow-down {\r\n    border-top: 5px solid #fff;\n}\n.arrow-down {\r\n    border-top: 5px solid #505050;\r\n    position: absolute;\r\n    top: 20px;\r\n    right: 10px;\n}\n.cover-bg {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\n}\n.logo-system {\r\n    display: none;\n}\n.footer-text {\r\n    font-size: 8px;\n}\n.slot_body {\r\n    width: 97% !important;\r\n    margin-top: 60px;\r\n    margin-left: 2%;\n}\n.slot-content {\r\n    overflow-y: scroll;\r\n    overflow-x: scroll;\r\n    height: 92%;\n}\n.modal-content {\r\n    top: 0 !important;\n}\n}\n@media only screen and (max-width: 1199px) {\n.container {\r\n    width: 96%;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n:root {\r\n  --tamañoLetraInput: 13px;\r\n  --shimaMora: #682584;\r\n  --shimaPlomo: #9b979f;\r\n  --shimaAmarillo: #ffbd11;\r\n  --shimaMoraDark: #24142b;\r\n  --colorBajo: #feebda !important;\r\n  --colorMedio: #f5ac6b !important;\r\n  --colorAlto: #da7925 !important;\n}\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  -ms-box-sizing: border-box;\r\n  box-sizing: border-box;\n}\nbody,\r\nhtml {\r\n  width: 100%;\r\n  height: 100%;\n}\nbody {\r\n  font-size: 15px;\r\n  color: #666;\n}\n.content {\r\n  margin-left: 0px !important;\r\n  height: 200px;\n}\na {\r\n  text-decoration: none;\n}\na:link,\r\na:visited,\r\na:active {\r\n  text-decoration: none;\n}\n.container {\r\n  max-width: 80%;\r\n  margin: 0 auto;\r\n  width: 100%;\r\n  margin-left: 20%;\n}\n.nav-fostrap {\r\n  display: block;\r\n  margin-bottom: 15px 0;\r\n\r\n  background: var(--shimaAmarillo);\r\n  -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  -o-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  border-bottom-left-radius: 20px;\r\n\r\n  width: 100%;\n}\n.nav-fostrap ul {\r\n  list-style-type: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  display: block;\n}\n.nav-fostrap li {\r\n  list-style-type: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  display: inline-block;\r\n  position: relative;\r\n  font-size: 14;\r\n  color: white;\n}\n.nav-fostrap li a {\r\n  padding: 15px 20px;\r\n  font-size: 14;\r\n  color: white;\r\n  display: inline-block;\r\n  outline: 0;\r\n  font-weight: 400;\n}\n.nav-fostrap li:hover ul.dropdown {\r\n  display: block;\n}\n.nav-fostrap li ul.dropdown {\r\n  position: absolute;\r\n  display: none;\r\n  width: 280px;\r\n  background: var(--shimaAmarillo);\r\n  -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  -o-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n  padding-top: 0;\r\n  border-bottom-left-radius: 10px;\r\n  border-bottom-right-radius: 10px;\n}\n.nav-fostrap li ul.dropdown li {\r\n  display: block;\r\n  list-style-type: none;\n}\n.nav-fostrap li ul.dropdown li a {\r\n  padding: 8px 15px;\r\n  font-size: 15px;\r\n  color: var(--shimaMora);\r\n  display: block;\r\n  font-weight: 400;\n}\n.nav-fostrap li ul.dropdown li:last-child a {\r\n  border-bottom: none;\n}\n.nav-fostrap li:hover a {\r\n  background: white;\r\n  color: var(--shimaAmarillo);\n}\n.nav-fostrap li:first-child:hover a {\r\n  border-radius: 3px 0 0 3px;\n}\n.nav-fostrap li ul.dropdown li:hover a {\r\n  background: var(--shimaMora);\r\n  color: white !important;\n}\n.nav-fostrap li ul.dropdown li:first-child:hover a {\r\n  border-radius: 0;\n}\n.nav-fostrap li:hover .arrow-down {\r\n  border-top: 5px solid var(--shimaAmarillo);\n}\n.arrow-down {\r\n  width: 0;\r\n  height: 0;\r\n  border-left: 5px solid transparent;\r\n  border-right: 5px solid transparent;\r\n  border-top: 5px solid #def1f0;\r\n  position: relative;\r\n  top: 15px;\r\n  right: -5px;\r\n  content: \"\";\n}\n.title-mobile {\r\n  display: none;\n}\n.fixed-top {\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  left: 0;\n}\nfooter {\r\n  position: absolute;\r\n  bottom: 0;\r\n  width: 90%;\r\n  border-top-right-radius: 20px;\r\n\r\n  color: white;\n}\n.footer-text {\r\n  border-top-right-radius: 20px;\r\n  background: var(--shimaMoraDark);\r\n  font-size: 0.7rem;\r\n  color: var(--shimaAmarillo);\r\n  font-weight: bolder;\n}\n.logo-system {\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 5%;\n}\n.modal-content {\r\n  top: 8% !important;\n}\n.slot-content {\r\n  position: relative;\r\n  overflow-x: hidden;\n}\n.slot-content::-webkit-scrollbar {\r\n  width: 0.5rem;\n}\n.slot-content::-webkit-scrollbar-track {\r\n  background: transparent;\n}\n.slot-content::-webkit-scrollbar-thumb {\r\n  background: var(--shimaMoraDark);\r\n  border-radius: 5px;\n}\n.slot-content::-webkit-scrollbar-thumb:active {\r\n  background: var(--shimaMoraDark);\n}\n.always-over {\r\n  z-index: 20 !important;\n}\n.slot_body {\r\n  width: 80% !important;\r\n\r\n  margin-top: 2%;\r\n  margin-left: 10%;\r\n  z-index: 2 !important;\n}\n.slot-content {\r\n  overflow-y: scroll;\r\n  height: 85%;\n}\nbody.swal2-height-auto {\r\n  height: 100% !important;\n}\ntd:hover {\r\n  background-color: #c3e2ff;\n}\n@media only screen and (max-width: 900px) {\n.nav-fostrap {\r\n    background: #fff;\r\n    opacity: 0.95;\r\n    width: 300px;\r\n    height: 80% !important;\r\n    top: 10% !important;\r\n    display: block;\r\n    position: fixed;\r\n    left: -300px;\r\n    top: 0px;\r\n    transition: left 0.25s ease;\r\n    margin: 0;\r\n    border: 0;\r\n    border-radius: 0;\r\n    overflow-y: auto;\r\n    overflow-x: hidden;\r\n    height: 100%;\r\n    border-top-right-radius: 10px;\r\n    border-bottom-right-radius: 10px;\n}\n.title-mobile {\r\n    position: fixed;\r\n    display: block;\r\n    top: 10px;\r\n    left: 100px;\r\n    right: 100px;\r\n    text-align: center;\n}\n.nav-fostrap.visible {\r\n    left: 0px;\r\n    transition: left 0.25s ease;\n}\n.nav-bg-fostrap {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    width: 100%;\r\n    height: 50px;\r\n    margin: 0;\r\n    position: absolute;\r\n    top: 0px;\r\n    left: 0px;\r\n    background: var(--shimaAmarillo);\r\n    padding: 12px 0 0 10px;\r\n    -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n    -o-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\r\n    border-bottom-left-radius: 20px;\r\n    border-bottom-right-radius: 20px;\n}\n.navbar-fostrap {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    height: 50px;\r\n    cursor: pointer;\r\n    margin: 0;\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    padding: 12px;\n}\n.navbar-fostrap span {\r\n    height: 2px;\r\n    background: #fff;\r\n    margin: 5px;\r\n    display: block;\r\n    width: 20px;\n}\n.navbar-fostrap span:nth-child(2) {\r\n    width: 20px;\n}\n.navbar-fostrap span:nth-child(3) {\r\n    width: 20px;\n}\n.nav-fostrap ul {\r\n    padding-top: 20px;\n}\n.nav-fostrap li {\r\n    display: block;\n}\n.nav-fostrap li a {\r\n    display: block;\r\n    color: #505050;\r\n    font-weight: 600;\n}\n.nav-fostrap li:first-child:hover a {\r\n    border-radius: 0;\n}\n.nav-fostrap li ul.dropdown {\r\n    position: relative;\n}\n.nav-fostrap li ul.dropdown li a {\r\n    background: white !important;\r\n    border-bottom: none;\r\n    color: var(--shimaMoraDark) !important;\n}\n.nav-fostrap li:hover a {\r\n    background: var(--shimaAmarillo);\r\n    color: #fff !important;\n}\n.nav-fostrap li ul.dropdown li:hover a {\r\n    background: var(--shimaMoraDark) !important;\r\n    color: #fff !important;\n}\n.nav-fostrap li ul.dropdown li a {\r\n    padding: 5px 5px 5px 30px;\n}\n.nav-fostrap li:hover .arrow-down {\r\n    border-top: 5px solid #fff;\n}\n.arrow-down {\r\n    border-top: 5px solid #505050;\r\n    position: absolute;\r\n    top: 20px;\r\n    right: 10px;\n}\n.cover-bg {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\n}\n.logo-system {\r\n    display: none;\n}\n.footer-text {\r\n    font-size: 8px;\n}\n.slot_body {\r\n    width: 97% !important;\r\n    margin-top: 60px;\r\n    margin-left: 2%;\n}\n.slot-content {\r\n    overflow-y: scroll;\r\n    overflow-x: scroll;\r\n    height: 92%;\n}\n.modal-content {\r\n    top: 0 !important;\n}\n}\n@media only screen and (max-width: 1199px) {\n.container {\r\n    width: 96%;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28478,54 +28184,56 @@ var render = function() {
                           "inertia-link",
                           {
                             staticClass: "collapse-item",
-                            attrs: { href: "#" }
-                          },
-                          [_vm._v("Gestión")]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      [
-                        _c(
-                          "inertia-link",
-                          {
-                            staticClass: "collapse-item",
-                            attrs: { href: "#" }
-                          },
-                          [_vm._v("Horarios de personal")]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      [
-                        _c(
-                          "inertia-link",
-                          {
-                            staticClass: "collapse-item",
-                            attrs: { href: "#" }
-                          },
-                          [_vm._v("Cesados")]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      [
-                        _c(
-                          "inertia-link",
-                          {
-                            staticClass: "collapse-item",
-                            attrs: { href: "#" }
+                            attrs: {
+                              href: _vm.$route("menu.mis_datos_personales")
+                            }
                           },
                           [_vm._v("Mis datos personales")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            staticClass: "collapse-item",
+                            attrs: { href: "#" }
+                          },
+                          [_vm._v("prueba")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            staticClass: "collapse-item",
+                            attrs: { href: "#" }
+                          },
+                          [_vm._v("compras")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      [
+                        _c(
+                          "inertia-link",
+                          {
+                            staticClass: "collapse-item",
+                            attrs: { href: "#" }
+                          },
+                          [_vm._v("etc")]
                         )
                       ],
                       1
@@ -28842,7 +28550,7 @@ var render = function() {
                 [
                   _c("img", {
                     attrs: {
-                      src: "/images/general/logo-blanco.svg",
+                      src: "/images/logo.png",
                       alt: "Logo",
                       width: "120px"
                     }
@@ -29067,135 +28775,6 @@ var render = function() {
                           }
                         }
                       })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group col-sm-4" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-control-label label-title",
-                          attrs: { for: "inpUsuario" }
-                        },
-                        [_vm._v("USUARIO")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.frmDatosUsuario.usuario,
-                            expression: "frmDatosUsuario.usuario"
-                          }
-                        ],
-                        staticClass: "form-control center",
-                        staticStyle: { "max-width": "200px" },
-                        attrs: {
-                          type: "text",
-                          id: "inpUsuario",
-                          name: "usuario",
-                          disabled: true
-                        },
-                        domProps: { value: _vm.frmDatosUsuario.usuario },
-                        on: {
-                          focus: function($event) {
-                            return _vm.hidenav()
-                          },
-                          blur: function($event) {
-                            return _vm.shownav()
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.frmDatosUsuario,
-                              "usuario",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.submited && !_vm.$v.frmDatosUsuario.usuario.required
-                        ? _c(
-                            "div",
-                            {
-                              staticStyle: { color: "red", "font-size": "12px" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                *Campo obligatorio\n              "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group col-sm-4" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-control-label label-title",
-                          attrs: { for: "dtpFechaNacimiento" }
-                        },
-                        [_vm._v("FECHA NACIMIENTO")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.frmDatosUsuario.fechaNacimiento,
-                            expression: "frmDatosUsuario.fechaNacimiento"
-                          }
-                        ],
-                        staticClass: "form-control center",
-                        staticStyle: { "max-width": "200px" },
-                        attrs: {
-                          type: "date",
-                          id: "dtpFechaNacimiento",
-                          name: "fechaNacimiento",
-                          disabled: _vm.frmDatosUsuario.modo == "VISTA"
-                        },
-                        domProps: {
-                          value: _vm.frmDatosUsuario.fechaNacimiento
-                        },
-                        on: {
-                          focus: function($event) {
-                            return _vm.hidenav()
-                          },
-                          blur: function($event) {
-                            return _vm.shownav()
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.frmDatosUsuario,
-                              "fechaNacimiento",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.submited &&
-                      !_vm.$v.frmDatosUsuario.fechaNacimiento.required
-                        ? _c(
-                            "div",
-                            {
-                              staticStyle: { color: "red", "font-size": "12px" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                *Campo obligatorio\n              "
-                              )
-                            ]
-                          )
-                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -29458,365 +29037,9 @@ var render = function() {
                             _vm._v("Masculino")
                           ])
                         ]
-                      ),
-                      _vm._v(" "),
-                      _vm.submited && !_vm.$v.frmDatosUsuario.sexo.noZero
-                        ? _c(
-                            "div",
-                            {
-                              staticStyle: { color: "red", "font-size": "12px" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                *Campo obligatorio\n              "
-                              )
-                            ]
-                          )
-                        : _vm._e()
+                      )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group col-sm-4" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-control-label label-title",
-                          attrs: { for: "txtDireccion" }
-                        },
-                        [_vm._v("DIRECCIÓN")]
-                      ),
-                      _vm._v(" "),
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.frmDatosUsuario.direccion,
-                            expression: "frmDatosUsuario.direccion"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        staticStyle: { "max-width": "300px" },
-                        attrs: {
-                          type: "text",
-                          id: "txtDireccion",
-                          name: "direccion",
-                          disabled: _vm.frmDatosUsuario.modo == "VISTA"
-                        },
-                        domProps: { value: _vm.frmDatosUsuario.direccion },
-                        on: {
-                          focus: function($event) {
-                            return _vm.hidenav()
-                          },
-                          blur: function($event) {
-                            return _vm.shownav()
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.frmDatosUsuario,
-                              "direccion",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.submited && !_vm.$v.frmDatosUsuario.direccion.required
-                        ? _c(
-                            "div",
-                            {
-                              staticStyle: { color: "red", "font-size": "12px" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                *Campo obligatorio\n              "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-row" }, [
-                    _c("div", { staticClass: "form-group col-sm-4" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-control-label label-title",
-                          attrs: { for: "slcDepartamentos" }
-                        },
-                        [_vm._v("DEPARTAMENTO")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.frmDatosUsuario.id_departamento,
-                              expression: "frmDatosUsuario.id_departamento"
-                            }
-                          ],
-                          staticClass: "form-control center",
-                          staticStyle: { "max-width": "300px" },
-                          attrs: {
-                            type: "text",
-                            id: "slcDepartamentos",
-                            name: "departamento",
-                            disabled: _vm.frmDatosUsuario.modo == "VISTA"
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.frmDatosUsuario,
-                                  "id_departamento",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              },
-                              _vm.FiltrarProvincias
-                            ]
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "0" } }, [
-                            _vm._v("Seleccione...")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.departamentos, function(departamento) {
-                            return _c(
-                              "option",
-                              {
-                                key: departamento.id,
-                                domProps: { value: departamento.id }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  " +
-                                    _vm._s(departamento.name) +
-                                    "\n                "
-                                )
-                              ]
-                            )
-                          })
-                        ],
-                        2
-                      ),
-                      _vm._v(" "),
-                      _vm.submited &&
-                      !_vm.$v.frmDatosUsuario.id_departamento.noZero
-                        ? _c(
-                            "div",
-                            {
-                              staticStyle: { color: "red", "font-size": "12px" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                *Campo obligatorio\n              "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group col-sm-4" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-control-label label-title",
-                          attrs: { for: "slcProvincias" }
-                        },
-                        [_vm._v("PROVINCIA")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.frmDatosUsuario.id_provincia,
-                              expression: "frmDatosUsuario.id_provincia"
-                            }
-                          ],
-                          staticClass: "form-control center",
-                          staticStyle: { "max-width": "300px" },
-                          attrs: {
-                            type: "text",
-                            id: "slcProvincias",
-                            name: "provincia",
-                            disabled: _vm.frmDatosUsuario.modo == "VISTA"
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.frmDatosUsuario,
-                                  "id_provincia",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              },
-                              _vm.FiltrarDistritos
-                            ]
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "0" } }, [
-                            _vm._v("Seleccione...")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.provincias_filtradas, function(provincia) {
-                            return _c(
-                              "option",
-                              {
-                                key: provincia.id,
-                                domProps: { value: provincia.id }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  " +
-                                    _vm._s(provincia.name) +
-                                    "\n                "
-                                )
-                              ]
-                            )
-                          })
-                        ],
-                        2
-                      ),
-                      _vm._v(" "),
-                      _vm.submited &&
-                      !_vm.$v.frmDatosUsuario.id_provincia.noZero
-                        ? _c(
-                            "div",
-                            {
-                              staticStyle: { color: "red", "font-size": "12px" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                *Campo obligatorio\n              "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group col-sm-4" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-control-label label-title",
-                          attrs: { for: "slcDistritos" }
-                        },
-                        [_vm._v("DISTRITO")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.frmDatosUsuario.id_distrito,
-                              expression: "frmDatosUsuario.id_distrito"
-                            }
-                          ],
-                          staticClass: "form-control center",
-                          staticStyle: { "max-width": "300px" },
-                          attrs: {
-                            type: "text",
-                            id: "slcDistritos",
-                            name: "distrito",
-                            disabled: _vm.frmDatosUsuario.modo == "VISTA"
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.frmDatosUsuario,
-                                "id_distrito",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "0" } }, [
-                            _vm._v("Seleccione...")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.distritos_filtrados, function(distrito) {
-                            return _c(
-                              "option",
-                              {
-                                key: distrito.id,
-                                domProps: { value: distrito.id }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  " +
-                                    _vm._s(distrito.name) +
-                                    "\n                "
-                                )
-                              ]
-                            )
-                          })
-                        ],
-                        2
-                      ),
-                      _vm._v(" "),
-                      _vm.submited && !_vm.$v.frmDatosUsuario.id_distrito.noZero
-                        ? _c(
-                            "div",
-                            {
-                              staticStyle: { color: "red", "font-size": "12px" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                *Campo obligatorio\n              "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-row" }, [
                     _c("div", { staticClass: "form-group col-sm-4" }, [
                       _c(
                         "label",
@@ -29866,21 +29089,7 @@ var render = function() {
                             )
                           }
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.submited && !_vm.$v.frmDatosUsuario.telefono.required
-                        ? _c(
-                            "div",
-                            {
-                              staticStyle: { color: "red", "font-size": "12px" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                *Campo obligatorio\n              "
-                              )
-                            ]
-                          )
-                        : _vm._e()
+                      })
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group col-sm-4" }, [
@@ -29947,94 +29156,6 @@ var render = function() {
                             ]
                           )
                         : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-row" }, [
-                    _c("div", { staticClass: "form-group col-sm-4" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-control-label label-title",
-                          attrs: { for: "inpAgencia" }
-                        },
-                        [_vm._v("AGENCIA")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.frmDatosUsuario.nombre_agencia,
-                            expression: "frmDatosUsuario.nombre_agencia"
-                          }
-                        ],
-                        staticClass: "form-control center",
-                        staticStyle: { "max-width": "300px" },
-                        attrs: {
-                          type: "text",
-                          id: "inpAgencia",
-                          name: "agencia",
-                          disabled: true
-                        },
-                        domProps: { value: _vm.frmDatosUsuario.nombre_agencia },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.frmDatosUsuario,
-                              "nombre_agencia",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group col-sm-4" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-control-label label-title",
-                          attrs: { for: "inpCargo" }
-                        },
-                        [_vm._v("CARGO")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.frmDatosUsuario.nombre_cargo,
-                            expression: "frmDatosUsuario.nombre_cargo"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        staticStyle: { "max-width": "500px" },
-                        attrs: {
-                          type: "text",
-                          id: "inpCargo",
-                          name: "cargo",
-                          disabled: true
-                        },
-                        domProps: { value: _vm.frmDatosUsuario.nombre_cargo },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.frmDatosUsuario,
-                              "nombre_cargo",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
                     ])
                   ]),
                   _vm._v(" "),
@@ -30121,45 +29242,13 @@ var render = function() {
                             [_vm._v("NOMBRE HORARIO")]
                           ),
                           _vm._v(" "),
-                          _c("th", [
-                            _vm._v("INGRESO MAÑANA"),
-                            _c("br"),
-                            _vm._v("(L-V)")
-                          ]),
+                          _c("th", [_vm._v("HORA SALIDA"), _c("br")]),
                           _vm._v(" "),
-                          _c("th", [
-                            _vm._v("SALIDA MAÑANA"),
-                            _c("br"),
-                            _vm._v("(L-V)")
-                          ]),
+                          _c("th", [_vm._v("PAGADO"), _c("br")]),
                           _vm._v(" "),
-                          _c("th", [
-                            _vm._v("INGRESO TARDE"),
-                            _c("br"),
-                            _vm._v("(L-V)")
-                          ]),
+                          _c("th", [_vm._v("ASIENTO"), _c("br")]),
                           _vm._v(" "),
-                          _c("th", [
-                            _vm._v("SALIDA TARDE"),
-                            _c("br"),
-                            _vm._v("(L-V)")
-                          ]),
-                          _vm._v(" "),
-                          _c("th", [
-                            _vm._v("INGRESO MAÑANA"),
-                            _c("br"),
-                            _vm._v("(SAB)")
-                          ]),
-                          _vm._v(" "),
-                          _c("th", [
-                            _vm._v("SALIDA MAÑANA"),
-                            _c("br"),
-                            _vm._v("(SAB)")
-                          ]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("TOLERANCIA HORARIO")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("TOLERANCIA PERSONAL")])
+                          _c("th", [_vm._v("MINIBAN"), _c("br")])
                         ])
                       ]),
                       _vm._v(" "),
@@ -30239,70 +29328,6 @@ var render = function() {
                               _vm._v(
                                 "\n                  " +
                                   _vm._s(_vm.mi_usuario[0].hora_salida_tarde) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "table-bordered",
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(
-                                    _vm.mi_usuario[0].hora_entrada_maniana_s
-                                  ) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "table-bordered",
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(
-                                    _vm.mi_usuario[0].hora_salida_maniana_s
-                                  ) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "table-bordered",
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(_vm.mi_usuario[0].toleranciaHorario) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "table-bordered",
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(_vm.mi_usuario[0].toleranciaPersonal) +
                                   "\n                "
                               )
                             ]

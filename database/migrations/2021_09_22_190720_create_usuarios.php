@@ -19,6 +19,8 @@ class CreateUsuarios extends Migration
             $table->string('nombres', 100);
             $table->string('apellidoPaterno', 75);
             $table->string('apellidoMaterno', 75);
+            $table->string('genero', 50)->nullable();
+            $table->integer('telefono')->nullable();
             $table->integer('dni');
             $table->string('email', 150);
             $table->string('clave', 200);

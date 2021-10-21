@@ -2,6 +2,7 @@
   <div style="height: 100% !important">
     <div class="container">
       <inertia-link class="logo-system" :href="$route('menu.index')"
+      
         ><img :src="'/images/logo.png'" alt="Logo" width="180px"
       /></inertia-link>
 
@@ -14,25 +15,27 @@
               ></a>
               <ul class="dropdown text-left always-over">
                 <li>
-                  <inertia-link class="collapse-item" href="#"
-                    >Gestión</inertia-link
-                  >
-                </li>
-                <li>
-                  <inertia-link class="collapse-item" href="#"
-                    >Horarios de personal</inertia-link
-                  >
-                </li>
-                <li>
-                  <inertia-link class="collapse-item" href="#"
-                    >Cesados</inertia-link
-                  >
-                </li>
-                <li>
-                  <inertia-link class="collapse-item" href="#"
+                  <inertia-link class="collapse-item"
+                  :href="$route('menu.mis_datos_personales')"
                     >Mis datos personales</inertia-link
                   >
                 </li>
+                <li>
+                  <inertia-link class="collapse-item" href="#"
+                    >prueba</inertia-link
+                  >
+                </li>
+                <li>
+                  <inertia-link class="collapse-item" href="#"
+                    >compras</inertia-link
+                  >
+                </li>
+                <li>
+                  <inertia-link class="collapse-item" href="#"
+                    >etc</inertia-link
+                  >
+                </li>
+                
               </ul>
             </li>
             <li>
@@ -172,7 +175,7 @@
           </div>
           <inertia-link class="title-mobile" :href="$route('menu.index')"
             ><img
-              :src="'/images/general/logo-blanco.svg'"
+              :src="'/images/logo.png'"
               alt="Logo"
               width="120px"
           /></inertia-link>
@@ -395,7 +398,7 @@ a:active {
 .nav-fostrap li ul.dropdown li a {
   padding: 8px 15px;
   font-size: 15px;
-  color: var(--shimaMoraDark);
+  color: var(--shimaMora);
   display: block;
   font-weight: 400;
 }
@@ -403,7 +406,6 @@ a:active {
 .nav-fostrap li ul.dropdown li:last-child a {
   border-bottom: none;
 }
-
 .nav-fostrap li:hover a {
   background: white;
   color: var(--shimaAmarillo);
@@ -414,7 +416,7 @@ a:active {
 }
 
 .nav-fostrap li ul.dropdown li:hover a {
-  background: var(--shimaMoraDark);
+  background: var(--shimaMora);
   color: white !important;
 }
 

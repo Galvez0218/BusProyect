@@ -80,16 +80,16 @@
 
         <div class="btn-group">
             <a class="btn dropdown-toggle" href="#">
-                <div class="boton color-gth" id="btnGth">GTH</div>
+                <div class="boton color-gth" id="btnGth">PAGAR</div>
                 <span class="caret"></span>
             </a>
         </div>
-        <div class="btn-group">
+        <!-- <div class="btn-group">
             <a class="btn dropdown-toggle" href="#">
                 <div class="boton color-logistica" id="btnGth">LOGÍSTICA</div>
                 <span class="caret"></span>
             </a>
-        </div>
+        </div> -->
     </div>
 
     <span class="version">
