@@ -72,14 +72,15 @@
 
     <div class="content" id='content_Principal' style='display:block'>
         <div class="btn-group">
-            <a class="btn" href="{{route('menu.index')}}">
+            <a class="btn" 
+            href="{{route('menu.index')}}">
                 <div class="boton color-creditos" id="btnCreditos">MIS DATOS</div>
                 <span class="caret"></span>
             </a>
         </div>
 
         <div class="btn-group">
-            <a class="btn dropdown-toggle" href="#">
+            <a class="btn dropdown-toggle" href="{{url('/paypal/pay')}}">
                 <div class="boton color-gth" id="btnGth">PAGAR</div>
                 <span class="caret"></span>
             </a>

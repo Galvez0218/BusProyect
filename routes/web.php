@@ -5,6 +5,7 @@ use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\RegistrarController;
 use App\Http\Controllers\MisdatosController;
 use App\Http\Controllers\DatosController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
