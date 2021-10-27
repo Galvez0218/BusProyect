@@ -2,7 +2,6 @@
   <div style="height: 100% !important">
     <div class="container">
       <inertia-link class="logo-system" :href="$route('menu.index')"
-      
         ><img :src="'/images/logo.png'" alt="Logo" width="180px"
       /></inertia-link>
 
@@ -15,19 +14,33 @@
               ></a>
               <ul class="dropdown text-left always-over">
                 <li>
-                  <inertia-link class="collapse-item"
-                  :href="$route('menu.mis_datos_personales')"
+                  <inertia-link
+                    class="collapse-item"
+                    :href="$route('menu.mis_datos_personales')"
+                    v-if="
+                      $page.props.user_permissions.permisos.includes(
+                        'GENERAL/CLIENTES'
+                      )
+                    "
                     >Mis datos personales</inertia-link
                   >
                 </li>
                 <li>
-                  <inertia-link class="collapse-item" href="#"
-                    >prueba</inertia-link
+                  <inertia-link
+                    class="collapse-item"
+                    :href="$route('mis_datos.sugerencias')"
+                    v-if="
+                      $page.props.user_permissions.permisos.includes(
+                        'GENERAL/CLIENTES'
+                      )
+                    "
+                    >Sugerencias</inertia-link
                   >
                 </li>
                 <li>
-                  <inertia-link class="collapse-item" href="#"
-                    >compras</inertia-link
+                  <inertia-link class="collapse-item" 
+                  :href="$route('mis_datos.reclamos')"
+                    >Reclamos</inertia-link
                   >
                 </li>
                 <li>
@@ -35,7 +48,6 @@
                     >etc</inertia-link
                   >
                 </li>
-                
               </ul>
             </li>
             <li>
@@ -174,10 +186,7 @@
             <span></span> <span></span> <span></span>
           </div>
           <inertia-link class="title-mobile" :href="$route('menu.index')"
-            ><img
-              :src="'/images/logo.png'"
-              alt="Logo"
-              width="120px"
+            ><img :src="'/images/logo.png'" alt="Logo" width="120px"
           /></inertia-link>
         </div>
       </nav>
@@ -191,7 +200,7 @@
     <footer class="text-center text-lg-start" id="footer-navigator">
       <!-- Copyright -->
       <div class="text-right p-1 footer-text">
-        <span> </span>
+        <span> {{ $page.props.user_session.nombres }}/</span>
 
         <span class="ml-3"> </span>
 
@@ -281,7 +290,7 @@ export default {
 :root {
   --tamañoLetraInput: 13px;
   --shimaMora: #682584;
-  --shimaPlomo: #9b979f;
+  --shimaPlomo: #e9e4ee;
   --shimaAmarillo: #ffbd11;
   --shimaMoraDark: #24142b;
   --colorBajo: #feebda !important;

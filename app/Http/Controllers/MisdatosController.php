@@ -45,7 +45,7 @@ class MisdatosController extends Controller
         } else {
 
             $band = (new PrincipalController)->verificarPermiso($x['usuario_dni'], 'CLIENTES', 'GENERAL');
-
+            
             if ($band == 1) {
                 $dni = $x['usuario_dni'];
                 $mi_usuario = Usuario::from('usuarios as us')->select(

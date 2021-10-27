@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\RegistrarController;
 use App\Http\Controllers\MisdatosController;
+use App\Http\Controllers\DatosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,11 @@ Route::GET('/menu_principal/mi_menu', [MisdatosController::class, 'Index'])->nam
 Route::GET('/menu_principal/menu/mis_datospersonales', [MisdatosController::class, 'mis_datos_personales'])->name('menu.mis_datos_personales');
 Route::POST('/menu_principal/menu/mis_datospersonales/verificar', [MisdatosController::class, 'verificar_mi_usuario'])->name('mis_datos_personales.verificar');
 Route::POST('/menu_principal/menu/mis_datospersonales/guardar', [MisdatosController::class, 'guardar_mi_usuario'])->name('mis_datos_personales.guardar');
+Route::GET('/menu_principal/menu/sugerencias', [DatosController::class, 'sugerencias'])->name('mis_datos.sugerencias');
+Route::POST('/menu_principal/menu/sugerencias/guardar', [DatosController::class, 'guardar_sugerencia'])->name('sugerencia.guardar');
+Route::GET('/menu_principal/menu/reclamos', [DatosController::class, 'reclamos'])->name('mis_datos.reclamos');
+Route::POST('/menu_principal/menu/reclamos/guardar', [DatosController::class, 'guardar_sugerencia'])->name('reclamo.guardar');
+
+//------------------------PAY PAL -----------------------
+Route::GET('/paypal/pay', [PaymentController::class, 'payWithPaypal'])->name('paypalPay');
+Route::GET('/paypal/status', [PaymentController::class, 'payPalStatus'])->name('paypalStatus');

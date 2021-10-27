@@ -56,7 +56,7 @@
     <header id="header" class="header">
         <div class="top-left">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/home"><img class="logo-principal" src="/images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="/menu_principal"><img class="logo-principal" src="/images/logo2.png" alt="Logo"></a>
             </div>
         </div>
 

@@ -41,11 +41,11 @@ class HandleInertiaRequests extends Middleware
         $x = session()->all();
         if (empty($x['usuario_dni'])) {
             $permisos_array = null;
-            $datos_aplicacion = null;
+            // $datos_aplicacion = null;
             $version = null;
         } else {
             $permisos = DB::table('permisos_usuarios')
-                ->join('permisos', 'permisos_usuarios.id_permiso', '=', 'permisos.id_permiso')
+                ->join('permisos', 'permisos_usuarios.id_permiso', '=', 'permisos.id')
                 ->select('permisos.area', 'permisos.modulo')
                 ->where('permisos_usuarios.dni', '=', $request->session()->only(['usuario_dni']))
                 ->get();
@@ -74,18 +74,15 @@ class HandleInertiaRequests extends Middleware
                     'permisos' => null,
                 ],
 
-            'application' => fn () => $request->session()
-                ?   [
-                    'data' => $datos_aplicacion,
-                    'version' => $version
-                ]
-                : [
-                    'data' => null,
-                    'version' => null,
-                ]
+            // 'application' => fn () => $request->session()
+            //     ?   [
+            //         'data' => $datos_aplicacion,
+            //         'version' => $version
+            //     ]
+            //     : [
+            //         'data' => null,
+            //         'version' => null,
+            //     ]
         ]);
-        // return array_merge(parent::share($request), [
-        //     // //
-        // ]);
     }
 }
