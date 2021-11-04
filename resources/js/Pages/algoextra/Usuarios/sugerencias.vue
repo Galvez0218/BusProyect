@@ -371,7 +371,7 @@ export default {
                   Swal.fire({
                     icon: "success",
                     title: "¡ÉXITO!",
-                    text: "TIPO REGISTRADO",
+                    text: "SUGERENCIA REGISTRADA",
                     allowOutsideClick: false,
                     preConfirm: (result) => {
                       $("#modalRegistrarSugerencias").css("display", "none");

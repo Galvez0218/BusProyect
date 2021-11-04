@@ -350,7 +350,7 @@ export default {
                       Swal.fire({
                         icon: "success",
                         title: "¡ÉXITO!",
-                        text: "TIPO REGISTRADO",
+                        text: "RECLAMO REGISTRADO",
                         allowOutsideClick: false,
                         preConfirm: (result) => {
                           $("#modalRegistrarReclamos").css("display", "none");

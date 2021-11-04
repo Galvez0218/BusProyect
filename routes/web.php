@@ -44,7 +44,7 @@ Route::POST('/menu_principal/menu/mis_datospersonales/guardar', [MisdatosControl
 Route::GET('/menu_principal/menu/sugerencias', [DatosController::class, 'sugerencias'])->name('mis_datos.sugerencias');
 Route::POST('/menu_principal/menu/sugerencias/guardar', [DatosController::class, 'guardar_sugerencia'])->name('sugerencia.guardar');
 Route::GET('/menu_principal/menu/reclamos', [DatosController::class, 'reclamos'])->name('mis_datos.reclamos');
-Route::POST('/menu_principal/menu/reclamos/guardar', [DatosController::class, 'guardar_sugerencia'])->name('reclamo.guardar');
+Route::POST('/menu_principal/menu/reclamos/guardar', [DatosController::class, 'guardar_reclamo'])->name('reclamo.guardar');
 
 //------------------------PAY PAL -----------------------
 Route::GET('/paypal/pay', [PaymentController::class, 'payWithPaypal'])->name('paypalPay');

@@ -72,19 +72,19 @@
 
     <div class="content" id='content_Principal' style='display:block'>
         <div class="btn-group">
-            <a class="btn" 
-            href="{{route('menu.index')}}">
+            <a class="btn" href="{{route('menu.index')}}">
                 <div class="boton color-creditos" id="btnCreditos">MIS DATOS</div>
                 <span class="caret"></span>
             </a>
         </div>
 
-        <div class="btn-group">
-            <a class="btn dropdown-toggle" href="{{url('/paypal/pay')}}">
+        <!-- <div class="btn-group">
+            <a class="btn dropdown-toggle" id="paypal-button-container">
                 <div class="boton color-gth" id="btnGth">PAGAR</div>
                 <span class="caret"></span>
             </a>
-        </div>
+        </div> -->
+        <div class="btn-group" id="paypal-button-container"></div>
         <!-- <div class="btn-group">
             <a class="btn dropdown-toggle" href="#">
                 <div class="boton color-logistica" id="btnGth">LOGÍSTICA</div>
@@ -95,7 +95,7 @@
 
     <span class="version">
 
-       
+
         <span>
 
             <button class="btn btn-primary btn-close" onclick="cerrarSesion()">
@@ -154,11 +154,34 @@
 
                 }
             </script>
-
+            <script src="https://www.paypal.com/sdk/js?client-id=AVKjblcTfwvrLan3MDfQuAlTb4i5mUrgyG29yJ8aMhGKRgC9WdaEcNybr4PW6n0RHqHINfFmCo3-lNTa"> </script>
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+            <script>
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        // This function sets up the details of the transaction, including the amount and line item details.
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: '20.00'
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        // This function captures the funds from the transaction.
+                        return actions.order.capture().then(function(details) {
+                            // This function shows a transaction success message to your buyer.
+                            alert('Transaction completed by ' + details.payer.name.given_name);
+                        });
+                    }
+                }).render('#paypal-button-container');
+                //This function displays Smart Payment Buttons on your web page.
+            </script>
 </body>
 
 </html>
