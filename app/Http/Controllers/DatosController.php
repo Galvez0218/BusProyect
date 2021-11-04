@@ -76,10 +76,11 @@ class DatosController extends Controller
 
     public function guardar_reclamo(Request $request)
     {
+        // dd($request);
         $datos_tipo =  $request->except('_token');
         $usuario_registro = $datos_tipo['dni'];
         // dd($datos_tipo);
-        $nombre_tipo = mb_strtoupper($datos_tipo['reclamos']);
+        $nombre_tipo = mb_strtoupper($datos_tipo['reclamo']);
 
         if ($datos_tipo['modo'] == "NUEVO") {
 

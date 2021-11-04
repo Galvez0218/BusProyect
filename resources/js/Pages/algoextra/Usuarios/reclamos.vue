@@ -274,7 +274,7 @@ export default {
       this.submited = false;
       this.title_modal = "EDITAR RECLAMO";
       this.frmRegistrarReclamos.id = reclamo.id;
-      this.frmRegistrarReclamos.nombre_tipo = reclamo.nombre_tipo;
+      this.frmRegistrarReclamos.reclamo = reclamo.reclamo;
       this.frmRegistrarReclamos.dni = this.$inertia.page.props.user_session.dni_registrado;
       this.frmRegistrarReclamos.modo = "EDITAR";
 
@@ -289,7 +289,7 @@ export default {
       this.submited = false;
       this.title_modal = "NUEVA RECLAMO";
       this.frmRegistrarReclamos.id = 0;
-      this.frmRegistrarReclamos.reclamos = "";
+      this.frmRegistrarReclamos.reclamo = "";
       this.frmRegistrarReclamos.dni = this.$inertia.page.props.user_session.dni_registrado;
       this.frmRegistrarReclamos.modo = "NUEVO";
 
