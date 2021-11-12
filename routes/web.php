@@ -47,5 +47,6 @@ Route::GET('/menu_principal/menu/reclamos', [DatosController::class, 'reclamos']
 Route::POST('/menu_principal/menu/reclamos/guardar', [DatosController::class, 'guardar_reclamo'])->name('reclamo.guardar');
 
 //------------------------PAY PAL -----------------------
+Route::GET('/realizarPago', [PrincipalController::class, 'Pago'])->name('paypalPay');
 Route::GET('/paypal/pay', [PaymentController::class, 'payWithPaypal'])->name('paypalPay');
 Route::GET('/paypal/status', [PaymentController::class, 'payPalStatus'])->name('paypalStatus');

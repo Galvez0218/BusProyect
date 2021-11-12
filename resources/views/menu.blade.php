@@ -78,19 +78,8 @@
             </a>
         </div>
 
-        <!-- <div class="btn-group">
-            <a class="btn dropdown-toggle" id="paypal-button-container">
-                <div class="boton color-gth" id="btnGth">PAGAR</div>
-                <span class="caret"></span>
-            </a>
-        </div> -->
-        <div class="btn-group" id="paypal-button-container"></div>
-        <!-- <div class="btn-group">
-            <a class="btn dropdown-toggle" href="#">
-                <div class="boton color-logistica" id="btnGth">LOGÍSTICA</div>
-                <span class="caret"></span>
-            </a>
-        </div> -->
+        <!-- <div class="btn-group" id="paypal-button-container"></div> -->
+
     </div>
 
     <span class="version">
@@ -154,7 +143,8 @@
 
                 }
             </script>
-            <script src="https://www.paypal.com/sdk/js?client-id=AVKjblcTfwvrLan3MDfQuAlTb4i5mUrgyG29yJ8aMhGKRgC9WdaEcNybr4PW6n0RHqHINfFmCo3-lNTa"> </script>
+            <!-- SCRIPT PAGO CON PAYPAL -->
+            <!-- <script src="https://www.paypal.com/sdk/js?client-id=AVKjblcTfwvrLan3MDfQuAlTb4i5mUrgyG29yJ8aMhGKRgC9WdaEcNybr4PW6n0RHqHINfFmCo3-lNTa"> </script> -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

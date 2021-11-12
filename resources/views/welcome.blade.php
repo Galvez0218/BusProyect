@@ -36,6 +36,7 @@
 </head>
 
 <body class="<?php echo $pagina ?>">
+
     <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
@@ -105,130 +106,70 @@
         <!--.contenedor-->
     </div>
     <!--.barra-->
-
     <app-form-busqueda _ngcontent-serverApp-c3 _nghost-serverapp-c3>
         <div _ngcontent-serverApp-c3 class="ng-gradient ng-star-inserted" id="section_busqueda">
             <div _ngcontent-serverapp-c3 class="busqueda-container" style="max-width:1040px;">
-                <form _ngcontent-serverapp-c3 autocomplete="off" class="wrapper-form ant-form ant-form-horizontal ng-untouched ng-pristine ng-invalid" novalidate="" nz-form="" style="max-width: 1040px;">
-                    <!---->
-                    <!---->
-                    <div _ngcontent-serverapp-c3="" class="row-form ng-star-inserted">
+                <form action="/realizarPago" method="get" _ngcontent-serverapp-c3 autocomplete="off" 
+                class="wrapper-form ant-form ant-form-horizontal ng-untouched ng-pristine ng-invalid" 
+                novalidate="" nz-form="" style="max-width: 900px;">
+                    <!-- ORIGEN -->
+                    
+                    <div _ngcontent-serverapp-c3="" class="row-form ng-star-inserted" >
                         <div _ngcontent-serverapp-c3="" class="text-center-barra descripcion" style="font-size: 1.3rem;font-weight: bold; width: 100%; margin-bottom: 14px; color: var(--shimaMoraDark); text-align: center"> Hola, ¿A dónde nos vamos de viaje? </div>
                         <div _ngcontent-serverapp-c3="" class="columns-inputs-group">
                             <div _ngcontent-serverapp-c3="" class="input-field column-origen">
-                                <nz-form-item _ngcontent-serverapp-c3="" class="gutter-row ant-form-item ant-row" nzspan="24" style="margin: 0px">
-                                    <nz-form-control _ngcontent-serverapp-c3="" nzerrortip="" class="ng-tns-c8-0 ant-form-item-control-wrapper ant-col ng-star-inserted">
-                                        <div class="ant-form-item-control"><span class="ant-form-item-children"><i _ngcontent-serverapp-c3="" class="" style="position: absolute; top: 2px; left: 10px; z-index: 10; border: 3px solid var(--shimaAmarillo); height: 12px; width: 12px; border-radius: 100%"></i>
-                                                <nz-select _ngcontent-serverapp-c3="" formcontrolname="origen" nzallowclear="" nzautofocus="" nzshowsearch="" nzsize="large" class="ng-tns-c9-1 ant-select ant-select-lg ant-select-enabled ant-select-allow-clear ng-untouched ng-pristine ng-invalid ng-star-inserted">
-                                                    <div class="ant-select-selection ng-tns-c15-4 ant-select-selection--single" cdkoverlayorigin="" nz-select-top-control="" tabindex="0">
-                                                        <!---->
-                                                        <div class="ant-select-selection__rendered">
-                                                            <!---->
-                                                            <div class="ant-select-selection__placeholder ng-tns-c15-4 ng-star-inserted" nz-select-unselectable="" unselectable="unselectable" style="display: block; user-select: none;">Origen</div>
-                                                            <!---->
-                                                            <!---->
-                                                            <!---->
-                                                            <!---->
-                                                            <div class="ant-select-search ant-select-search--inline ng-tns-c15-4 ng-star-inserted" style="display: none;">
-                                                                <div class="ant-select-search__field__wrap">
-                                                                    <!----><input autocomplete="something-new" class="ant-select-search__field ng-tns-c15-4 ng-untouched ng-pristine ng-valid ng-star-inserted"><span class="ant-select-search__field__mirror ng-tns-c15-4 ng-star-inserted"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!---->
-                                                            <!---->
-                                                        </div>
-                                                        <!---->
-                                                        <!----><span class="ant-select-arrow ng-tns-c15-4 ng-star-inserted" nz-select-unselectable="" unselectable="unselectable" style="user-select: none;">
-                                                            <!---->
-                                                            <!----><i _ngcontent-serverapp-c3="" class="fa fa-exchange ng-star-inserted"></i>
-                                                            <!---->
-                                                            <!---->
-                                                        </span>
-                                                    </div>
-                                                    <!---->
-                                                    <!---->
-                                                </nz-select><span class="ant-form-item-children-icon">
-                                                    <!---->
-                                                </span>
-                                            </span>
-                                            <!---->
-                                            <!---->
-                                            <!---->
-                                            <!---->
-                                            <!---->
-                                            <!---->
-                                        </div>
-                                    </nz-form-control>
-                                </nz-form-item>
+                                <select name="origen" class="form-control" id="cmbAgenciasUC" style="max-width: 200px" data-index="4">
+                                    <span class="ant-form-item-children">
+                                        <i _ngcontent-serverapp-c3="" class="" style="position: absolute; top: 2px; left: 10px; z-index: 10; border: 3px solid var(--shimaAmarillo); height: 12px; width: 12px; border-radius: 100%"></i></span>
+                                        <option value="0">origen</option>
+                                        @foreach ($origenes as $origen) 
+                                         <option value="{{$origen['id']}}">{{$origen['nombre_origen']}}</option>
+                                        @endforeach
+                                        
+                                       
+                                    <span class="ant-select-search__field__mirror ng-tns-c15-4 ng-star-inserted"></span>
+                                </select>
                             </div>
-                            <!---->
+
+                            <!-- DESTINO -->
                             <div _ngcontent-serverapp-c3="" class="input-field column-destino">
                                 <nz-form-item _ngcontent-serverapp-c3="" nzspan="24" style="margin: 0px" class="ant-form-item ant-row">
                                     <nz-form-control _ngcontent-serverapp-c3="" nzerrortip="" class="ng-tns-c8-2 ant-form-item-control-wrapper ant-col ng-star-inserted">
-                                        <div class="ant-form-item-control"><span class="ant-form-item-children"><i _ngcontent-serverapp-c3="" class="fa fa-map-marker" style="position: absolute; left: 10px; z-index: 10; color: var(--shimaAmarillo); font-size: 18px;"></i>
-                                                <nz-select _ngcontent-serverapp-c3="" formcontrolname="destino" nzallowclear="" nzshowsearch="" nzsize="large" class="ng-tns-c9-3 ant-select ant-select-lg ant-select-enabled ant-select-allow-clear ng-untouched ng-pristine ng-invalid ng-star-inserted">
-                                                    <div class="ant-select-selection ng-tns-c15-5 ant-select-selection--single" cdkoverlayorigin="" nz-select-top-control="" tabindex="0">
-                                                        <!---->
-                                                        <div class="ant-select-selection__rendered">
-                                                            <!---->
-                                                            <div class="ant-select-selection__placeholder ng-tns-c15-5 ng-star-inserted" nz-select-unselectable="" unselectable="unselectable" style="display: block; user-select: none;">Destino</div>
-                                                            <!---->
-                                                            <!---->
-                                                            <!---->
-                                                            <!---->
-                                                            <div class="ant-select-search ant-select-search--inline ng-tns-c15-5 ng-star-inserted" style="display: none;">
-                                                                <div class="ant-select-search__field__wrap">
-                                                                    <!----><input autocomplete="something-new" class="ant-select-search__field ng-tns-c15-5 ng-untouched ng-pristine ng-valid ng-star-inserted"><span class="ant-select-search__field__mirror ng-tns-c15-5 ng-star-inserted"></span>
-                                                                </div>
-                                                            </div>
-                                                            <!---->
-                                                            <!---->
-                                                        </div>
-                                                        <!---->
-                                                        <!----><span class="ant-select-arrow ng-tns-c15-5 ng-star-inserted" nz-select-unselectable="" unselectable="unselectable" style="user-select: none;">
-                                                            <!---->
-                                                            <!----><i class="anticon ant-select-arrow-icon ng-tns-c15-5 anticon-down ng-star-inserted" nz-icon="" nztype="down"><svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" class="ng-tns-c15-5" data-icon="down" aria-hidden="true">
-                                                                    <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path>
-                                                                </svg></i>
-                                                            <!---->
-                                                            <!---->
-                                                        </span>
-                                                    </div>
-                                                    <!---->
-                                                    <!---->
-                                                </nz-select><span class="ant-form-item-children-icon">
-                                                    <!---->
-                                                </span>
-                                            </span>
-                                            <!---->
-                                            <!---->
-                                            <!---->
-                                            <!---->
-                                            <!---->
-                                            <!---->
+                                        <div class="ant-form-item-control">
+                                            <select name="destino" class="form-control" id="cmbAgenciasUC" style="max-width: 200px" data-index="4">
+                                                <span class="ant-form-item-children">
+                                                    <i _ngcontent-serverapp-c3="" class="" style="position: absolute; top: 2px; left: 10px; z-index: 10; border: 3px solid var(--shimaAmarillo); height: 12px; width: 12px; border-radius: 100%"></i></span>
+                                                <option value="0">Destino</option>
+                                                @foreach ($origenes as $origen) 
+                                         <option value="{{$origen['id']}}">{{$origen['nombre_origen']}}</option>
+                                        @endforeach
+                                                <span class="ant-select-search__field__mirror ng-tns-c15-4 ng-star-inserted"></span>
+                                            required
+                                            </select>
+                                            <nz-select _ngcontent-serverapp-c3="" formcontrolname="destino" nzallowclear="" nzshowsearch="" nzsize="large" class="ng-tns-c9-3 ant-select ant-select-lg ant-select-enabled ant-select-allow-clear ng-untouched ng-pristine ng-invalid ng-star-inserted">
+                                            </nz-select>
                                         </div>
                                     </nz-form-control>
                                 </nz-form-item>
                             </div>
+                            <!-- FECHA DE SALIDA -->
                             <div _ngcontent-serverapp-c3="" class="input column-fechaIda">
                                 <div _ngcontent-serverapp-c3="" class="w-form">
-                                    <div _ngcontent-serverapp-c3="" class="input-group mb-0"><input _ngcontent-serverapp-c3="" bsdatepicker="" class="form-control ng-untouched ng-pristine ng-valid" formcontrolname="fechaIda" placeholder="" readonly="" type="text">
-                                        <div _ngcontent-serverapp-c3="" class="input-group-append"><span _ngcontent-serverapp-c3="" class="input-group-text"><i _ngcontent-serverapp-c3="" class="fa fa-calendar"></i></span></div>
+                                    <div _ngcontent-serverapp-c3="" class="input-group mb-0">
+                                        <label class="form-control-label label-title">Salida:</label>
+                                        <input type="date" name="fechasalida" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" />
                                     </div>
-                                    <!---->
-                                </div>
-                            </div>
-                            <div _ngcontent-serverapp-c3="" class="input column-fechaRetorno">
-                                <div _ngcontent-serverapp-c3="" class="w-form">
-                                    <div _ngcontent-serverapp-c3="" class="input-group">
-                                        <!----><input _ngcontent-serverapp-c3="" bsdatepicker="" formcontrolname="fechaRetorno" readonly="" type="text" placeholder="Fecha de retorno" class="form-control ">
-                                        <div _ngcontent-serverapp-c3="" class="input-group-append"><span _ngcontent-serverapp-c3="" class="input-group-text" id="basic-addon1"><i _ngcontent-serverapp-c3="" class="fa fa-calendar"></i></span></div>
-                                    </div>
-                                    <div _ngcontent-serverapp-c3="" class="msg-error" style="display: none"> Selecciona tu destino </div>
                                 </div>
                             </div>
                         </div>
-                        <div _ngcontent-serverapp-c3="" class="column-buttonBuscar"><button _ngcontent-serverapp-c3="" id="btnBuscarItinerario" type="submit" class="btn mb-2 btn-buscar-home">Buscar</button></div>
+                        <div _ngcontent-serverapp-c3="" class="input column-fechaIda">
+                            <button 
+                            _ngcontent-serverapp-c3="" 
+                              id="btnBuscarItinerario" 
+                              type="submit"
+                              class="btn mb-2 btn-buscar-home"
+                              >Buscar</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -257,60 +198,7 @@
         <!-- <img src="images/contenedor2.jpg" alt=""> -->
         <video autoplay loop poster="images/contenedor3.jpg"></video>
         </div>
-        <!--.contenedor-video-->
-        <div class="contenido-programa">
-            <div class="contenedor">
-                <div class="programa-evento">
-                    <h2>Viaja con SHIMA</h2>
 
-                    <nav class="menu-programa">
-                        <a href="#encuentranos">
-                            <i class="fa fa-university" aria-hidden="true"></i> Encuentranos </a>
-                        <a href="#destinos">
-                            <i class="fa fa-comment" aria-hidden="true"></i> Destinos </a>
-
-                    </nav>
-
-
-                    <div id="encuentranos" class="info-curso ocultar clearfix">
-                        <div class="detalle-evento">
-                            <h3>Diseño UI y UX para móviles</h3>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> 10:00:00</p>
-                            <p><i class="fa fa-calendar" aria-hidden="true"></i> 2016-12-09</p>
-                            <p><i class="fa fa-user" aria-hidden="true"></i> Susan Sanchez</p>
-                        </div>
-                        <div class="detalle-evento">
-                            <h3>Angular 5</h3>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> 19:00:00</p>
-                            <p><i class="fa fa-calendar" aria-hidden="true"></i> 2016-12-10</p>
-                            <p><i class="fa fa-user" aria-hidden="true"></i> Juan Sanchez</p>
-                        </div>
-                        <a href="#" class="button float-right">Ver todos</a>
-                    </div>
-                    <!--#talleres-->
-
-                    <div id="destinos" class="info-curso ocultar clearfix">
-                        <div class="detalle-evento">
-                            <h3>destinos</h3>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> 10:00:00</p>
-                            <p><i class="fa fa-calendar" aria-hidden="true"></i> 2016-12-09</p>
-                            <p><i class="fa fa-user" aria-hidden="true"></i> Susan Sanchez</p>
-                        </div>
-                        <div class="detalle-evento">
-                            <h3>Tecnologías del Futuro PHP</h3>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> 05:00:00</p>
-                            <p><i class="fa fa-calendar" aria-hidden="true"></i> 2016-12-09</p>
-                            <p><i class="fa fa-user" aria-hidden="true"></i> Juan Sanchez</p>
-                        </div>
-                        <a href="#" class="button float-right">Ver todos</a>
-                    </div>
-                    <!--#talleres-->
-                </div>
-                <!--.programa-evento-->
-            </div>
-            <!--.contenedor-->
-        </div>
-        <!--.contenido-programa-->
     </section>
     <!--.programa-->
 
@@ -486,10 +374,6 @@
             <!--End mc_embed_signup-->
         </div>
     </footer>
-
-
-
-    <button>Hola mundo</button>
 </body>
 
 </html>

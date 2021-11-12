@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\View;
 use App\models\Usuario;
 use App\models\Permisos\Permiso;
 use App\models\Permisos\Permisos_Usuario;
+use App\models\Origen;
+use App\models\ViajeDetalle;
+
+use function GuzzleHttp\Promise\all;
 
 class PrincipalController extends Controller
 {
@@ -24,12 +28,13 @@ class PrincipalController extends Controller
     public function Welcome()
     {
         // dd(session()->all());
-        // $congresos = Congreso::all();
+        $origenes = Origen::select('id', 'nombre_origen')->get();
         session()->forget('usuario_dni');
         session()->forget('email');
         session()->forget('clave');
         session()->forget('nombres');
-    return view('welcome'/*, array('congresos' => $congresos)*/);
+    return view('welcome', compact('origenes'));
+    
     }
 
     public function Login()
@@ -173,5 +178,24 @@ class PrincipalController extends Controller
         return $band;
     }
 
+    public function Pago(Request $request){
+        $origen = $request->origen;
+        $destino = $request->destino;
+        $fecha = $request->fechasalida;
+        $datos = $request->all();
+        $origenes = Origen::select(
+            'id', 'nombre_origen'
+        )
+        ->where('id', $origen)
+        ->get();
+        $destinos = Origen::select(
+            'id', 'nombre_origen'
+        )
+        ->where('id', $destino)
+        ->get();
+        $viaje_detalles = ViajeDetalle::all();
+        // dd($datos);
+        return view('pago', compact('viaje_detalles'), compact('origenes', 'destinos', 'datos'));
+    }
     
 }
