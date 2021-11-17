@@ -32,6 +32,8 @@
     <meta name="theme-color" content="#fafafa">
     <script src="https://kit.fontawesome.com/1a2bd5a108.js" crossorigin="anonymous"></script>
 
+    <!-- SCRIPT PAGO CON PAYPAL -->
+    <script src="https://www.paypal.com/sdk/js?client-id=Af47qW5mnhYAMwBLNXQW108GV8uA9uYR5Aisif1BKbDyIBlZNBnTTRNbWnQHTWxxG8z9PlpeE_qbcjHJ&locale=es_ES"> </script>
 
 
 
@@ -130,8 +132,8 @@
             <!--#datos_usuario--> --}}
 
             <div class="col-md-6 login-form-2">
-                <form action="{{ route('registrar.verificar_usuario') }}" method="post" autocomplete="off">
-                    {{csrf_field()}}
+                <!-- <form action="{{ route('registrar.verificar_usuario') }}" method="post" autocomplete="off"> -->
+                    <!-- {{csrf_field()}} -->
                     <h3>Todos los días</h3>
                     <h3>Complete sus datos</h3>
                     <div class="col register-content">
@@ -173,9 +175,12 @@
                         <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">PAGAR CON PAYPAL</label>
                         <div id="paypal-button-container"></div>
+                        <!-- <form id="paypal-form" action="{{ route('paypal.pagar') }}" method="post">
+                            <input type="hidden" name="details" id="details-input">
+                        </form> -->
                         </div>
                     </div>
-                </form>
+                <!-- </form> -->
             </div>
             <!--#paquetes-->
 
@@ -183,24 +188,6 @@
                 
 
                 <div class="caja clearfix">
-
-                    <!-- <div class="total">
-                        <p>Total a Pagar:</p>
-                        <div id="suma-total" class="suma-total">
-                            @foreach ($viaje_detalles as $viaje_detalle)
-                            <p class="numero">S/.{{$viaje_detalle->precio_viaje}}</p>
-                            @endforeach
-
-                        </div>
-                        <input type="hidden" name="total_pedido" id="total_pedido">
-                        <input type="hidden" name="total_descuento" id="total_descuento" value="total_descuento">
-
-                    </div> -->
-
-
-                    <!-- <a href="{{url('/paypal/pay')}}" class="button btn-center">
-                        Pagar con PayPal
-                    </a> -->
 
                 </div>
                 <!--.caja-->
@@ -292,8 +279,7 @@
         </div>
     </footer>
 
-<!-- SCRIPT PAGO CON PAYPAL -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AVKjblcTfwvrLan3MDfQuAlTb4i5mUrgyG29yJ8aMhGKRgC9WdaEcNybr4PW6n0RHqHINfFmCo3-lNTa"> </script>
+
     <script src="{{asset('js/vendor/modernizr-3.8.0.min.js')}}"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
@@ -338,6 +324,10 @@
     <!-- SCRIPT PAGO CON PAYPAL -->
     <script>
         paypal.Buttons({
+            style:{
+                shape: "pill",
+                label: "pay",
+            },
             createOrder: function(data, actions) {
                 // This function sets up the details of the transaction, including the amount and line item details.
                 return actions.order.create({
@@ -353,8 +343,39 @@
                 return actions.order.capture().then(function(details) {
                     // This function shows a transaction success message to your buyer.
                     alert('Transaction completed by ' + details.payer.name.given_name);
+
+                    var firstname = $('.firstname').val();
+                    var lastname = $('.lastname').val();
+                    var email = $('.email').val();
+                    // var firstname = $('.firstname').val();
+                    // var firstname = $('.firstname').val();
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/pagado',
+                        data: {
+                            'fname': firstname,
+                            'lname': lastname,
+                            'email': email,
+                            'payment_mode': "pagado por paypal",
+                            'payment_id':details.id,
+                        } 
+                        // success: function(response) {
+                        //     swal(response.status);
+                        //     window.location.href = "/realizarPago";
+                        // }
+                    })
+                    // var paypalForm = document.getElementById('paypal-form');
+                    // var detailsInput = document.getElementById('details-input');
+
+                    // var jsonDetails = JSON.stringify(details); 
+                    
+                    // detailsInput.value = jsonDetails;
+                    // console.log(detailsInput);
+                    // paypalForm.submit();
                 });
             }
+
         }).render('#paypal-button-container');
         //This function displays Smart Payment Buttons on your web page.
     </script>

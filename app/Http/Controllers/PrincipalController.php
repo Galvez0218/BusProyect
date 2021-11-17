@@ -198,4 +198,8 @@ class PrincipalController extends Controller
         return view('pago', compact('viaje_detalles'), compact('origenes', 'destinos', 'datos'));
     }
     
+    public function pagado(Request $request){
+        dd("ingrese");
+        return redirect('/pagado')->with('status','order placed');
+    }
 }
