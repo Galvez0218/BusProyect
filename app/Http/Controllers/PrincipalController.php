@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 
 //MODELS
 use App\models\Usuario;
@@ -19,6 +20,8 @@ use App\models\Permisos\Permiso;
 use App\models\Permisos\Permisos_Usuario;
 use App\models\Origen;
 use App\models\ViajeDetalle;
+use App\models\Order;
+
 
 use function GuzzleHttp\Promise\all;
 
@@ -199,7 +202,23 @@ class PrincipalController extends Controller
     }
     
     public function pagado(Request $request){
-        dd("ingrese");
-        return redirect('/pagado')->with('status','order placed');
+        dd($request);
+        $order = new Order();
+        $order->id = Auth::id();
+        $order->fname = $request->input('fname');
+        $order->lname = $request->input('lname');
+        $order->email = $request->input('email');
+        $order->payment_mode = $request->input('payment_mode');
+        $order->payment_id = $request->input('payment_id');
+        
+        //PARA CALCULAR EL PRECIO TOTAL
+        $total = 30.00;
+        $order->precio_total = $total;
+        $order->save();
+
+        if($request->input('payment_mode') == "pagado por paypal"){
+            return response()->json(['status' => "Order placed Successfully"]);
+        }
+        return redirect('/')->with('status','order placed');
     }
 }
