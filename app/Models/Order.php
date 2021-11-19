@@ -8,16 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Order extends Model
 {
     use HasFactory;
-    protected $table = 'pagadorder';
-    protected $primaryKey = "id";
+    protected $table = 'Orders';
 
     protected $fillable = [
-        'fname',
-        'lname',
-        'email',
-        'payment_mode',
-        'payment_mode',
-        'precio_total',
-        'payment_id'
+        'nombres',
+        'apellidos',
+        'precio',
+        'dni',
+        'origen',
+        'destino'
     ];  
 }

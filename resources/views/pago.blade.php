@@ -133,65 +133,60 @@
 
             <div class="col-md-6 login-form-2">
                 <!-- <form action="{{ route('registrar.verificar_usuario') }}" method="post" autocomplete="off"> -->
-                    <!-- {{csrf_field()}} -->
-                    <h3>Todos los días</h3>
-                    <h3>Complete sus datos</h3>
-                    <div class="col register-content">
+                <!-- {{csrf_field()}} -->
+                <h3>Todos los días</h3>
+                <h3>Complete sus datos</h3>
+                <div class="col register-content">
+                    @foreach ($datosviajes as $datosviaje)
+                    <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">NOMBRES</label>
+                        <p class="text">{{$datosviaje->nombres}}</p>
+                    </div>
+                    <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">APELLIDOS</label>
+                        <p class="text">{{$datosviaje->apellidos}}</p>
+                    </div>
 
-                        <div class="row form-group">
-                            <input type="text" name="nombres" autocomplete="nope" class="form-control" placeholder="Nombres Completos" spellcheck="false" id="txtInputs" />
-                        </div>
-                        <div class="row form-group">
-                            <input type="text" name="apellidoPaterno" class="form-control" placeholder="Apellidos" spellcheck="false" id="txtInputs" />
-                        </div>
-
-                        <div class="row form-group">
-                            <input type="text" name="apellidoMaterno" autocomplete="nope" class="form-control" placeholder="Precios" spellcheck="false" id="txtInputs" />
-                        </div>
-                        <div class="row form-group">
+                    <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">PRECIO</label>
+                            <p class="text">{{$datosviaje->precio}}</p>
+                    </div>
+                    <!-- <div class="row form-group">
                             <input type="number" name="dni" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" placeholder="Documento de Identidad" spellcheck="false" id="txtInputs" />
-                        </div>
+                        </div> -->
+                    <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">DNI</label>
+                            <p class="text">{{$datosviaje->dni}}</p>
+                    </div>
 
-                        <div class="row form-group">
-                            <label for="inpdni" class="form-control-label label-title">ORIGEN</label>
-                            @foreach ($origenes as $origen)
-                            <p class="text">{{$origen->nombre_origen}}</p>
-                            @endforeach
-                        </div>
+                    <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">ORIGEN</label>
+                        <p class="text">{{$datosviaje->origen}}</p>
+                    </div>
 
-                        <div class="row form-group">
-                            <label for="inpdni" class="form-control-label label-title">DESTINO</label>
-                            @foreach ($destinos as $destino)
-                            <p class="text">{{$destino->nombre_origen}}</p>
-                            @endforeach
-                        </div>
+                    <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">DESTINO</label>
+                        <p class="text">{{$datosviaje->destino}}</p>
+                    </div>
 
+                    @endforeach
 
-                        <!-- 
+                    <!-- 
                         <div class="row form-group">
                             <button type="button" class="btn btn-link" id="tienes_cuenta"> <a href="{{route('gen.login')}}">¿Ya tiene una cuenta?</a></button>
                         </div> -->
-                        <h3>Realiza el pago</h3>
-                        <div class="row form-group">
+                    <h3>Realiza el pago</h3>
+                    <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">PAGAR CON PAYPAL</label>
                         <div id="paypal-button-container"></div>
                         <!-- <form id="paypal-form" action="{{ route('paypal.pagar') }}" method="post">
                             <input type="hidden" name="details" id="details-input">
                         </form> -->
-                        </div>
                     </div>
+                </div>
                 <!-- </form> -->
             </div>
             <!--#paquetes-->
-
-            <!-- <div id="resumen" class="resumen">
-                
-
-                <div class="caja clearfix">
-
-                </div>
-            </div> -->
-
         </form>
     </section>
 
@@ -239,7 +234,7 @@
             /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
              We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
         </style>
-       
+
     </footer>
 
 
@@ -287,7 +282,7 @@
     <!-- SCRIPT PAGO CON PAYPAL -->
     <script>
         paypal.Buttons({
-            style:{
+            style: {
                 shape: "pill",
                 label: "pay",
             },
@@ -321,7 +316,7 @@
                             'lname': lastname,
                             'email': email,
                             'payment_mode': "pagado por paypal",
-                            'payment_id':details.id,
+                            'payment_id': details.id,
                         },
                         success: function(response) {
                             swal(response.status);
@@ -332,7 +327,7 @@
                     // var detailsInput = document.getElementById('details-input');
 
                     // var jsonDetails = JSON.stringify(details); 
-                    
+
                     // detailsInput.value = jsonDetails;
                     // console.log(detailsInput);
                     // paypalForm.submit();

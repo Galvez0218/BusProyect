@@ -196,9 +196,11 @@ class PrincipalController extends Controller
         )
         ->where('id', $destino)
         ->get();
+
+        $datosviajes = Order::all();
         $viaje_detalles = ViajeDetalle::all();
         // dd($datos);
-        return view('pago', compact('viaje_detalles'), compact('origenes', 'destinos', 'datos'));
+        return view('pago', compact('viaje_detalles'), compact('origenes', 'destinos', 'datos', 'datosviajes'));
     }
     
     public function pagado(Request $request){

@@ -60,9 +60,6 @@ class RegistrarController extends Controller
                                         return redirect('/registrar');
                                         exit();
                                         return view('/login');
-                                        // Session::put('dni_registrado', $dni);
-
-                                        // return redirect('/login');
                                     } else {
                                         Session::flash('dni_existente', 'Ingresa tu email');
                                         return redirect('/registrar');
