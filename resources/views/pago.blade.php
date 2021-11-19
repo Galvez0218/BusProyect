@@ -133,40 +133,40 @@
 
             <div class="col-md-6 login-form-2">
                 <!-- <form action="{{ route('registrar.verificar_usuario') }}" method="post" autocomplete="off"> -->
-                <!-- {{csrf_field()}} -->
-                <h3>Todos los días</h3>
-                <h3>Complete sus datos</h3>
+                {{csrf_field()}}
+                <!-- <h3>Todos los días</h3> -->
+                <h3>Verifique sus datos</h3>
                 <div class="col register-content">
                     @foreach ($datosviajes as $datosviaje)
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">NOMBRES</label>
-                        <p class="text">{{$datosviaje->nombres}}</p>
+                        <p class="text" name="fname">{{$datosviaje->nombres}}</p>
                     </div>
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">APELLIDOS</label>
-                        <p class="text">{{$datosviaje->apellidos}}</p>
+                        <p class="text" name="lname">{{$datosviaje->apellidos}}</p>
                     </div>
 
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">PRECIO</label>
-                            <p class="text">{{$datosviaje->precio}}</p>
+                            <p class="text" name="precio">{{$datosviaje->precio}}</p>
                     </div>
                     <!-- <div class="row form-group">
                             <input type="number" name="dni" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" placeholder="Documento de Identidad" spellcheck="false" id="txtInputs" />
                         </div> -->
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">DNI</label>
-                            <p class="text">{{$datosviaje->dni}}</p>
+                            <p class="text" name="dni">{{$datosviaje->dni}}</p>
                     </div>
 
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">ORIGEN</label>
-                        <p class="text">{{$datosviaje->origen}}</p>
+                        <p class="text" name="origen">{{$datosviaje->origen}}</p>
                     </div>
 
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">DESTINO</label>
-                        <p class="text">{{$datosviaje->destino}}</p>
+                        <p class="text" name="destino">{{$datosviaje->destino}}</p>
                     </div>
 
                     @endforeach
@@ -320,6 +320,7 @@
                         },
                         success: function(response) {
                             swal(response.status);
+                            console.log(response);
                             window.location.href = "/";
                         }
                     })
