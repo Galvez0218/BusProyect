@@ -16,6 +16,7 @@ class Order extends Model
         'precio',
         'dni',
         'origen',
-        'destino'
+        'destino',
+        'fecha_salida'
     ];  
 }

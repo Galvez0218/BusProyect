@@ -109,24 +109,22 @@
     <app-form-busqueda _ngcontent-serverApp-c3 _nghost-serverapp-c3>
         <div _ngcontent-serverApp-c3 class="ng-gradient ng-star-inserted" id="section_busqueda">
             <div _ngcontent-serverapp-c3 class="busqueda-container" style="max-width:1040px;">
-                <form action="/realizarPago" method="get" _ngcontent-serverapp-c3 autocomplete="off" 
-                class="wrapper-form ant-form ant-form-horizontal ng-untouched ng-pristine ng-invalid" 
-                novalidate="" nz-form="" style="max-width: 900px;">
+                <form action="/realizarPago" method="get" _ngcontent-serverapp-c3 autocomplete="off" class="wrapper-form ant-form ant-form-horizontal ng-untouched ng-pristine ng-invalid" novalidate="" nz-form="" style="max-width: 900px;">
                     <!-- ORIGEN -->
-                    
-                    <div _ngcontent-serverapp-c3="" class="row-form ng-star-inserted" >
+
+                    <div _ngcontent-serverapp-c3="" class="row-form ng-star-inserted">
                         <div _ngcontent-serverapp-c3="" class="text-center-barra descripcion" style="font-size: 1.3rem;font-weight: bold; width: 100%; margin-bottom: 14px; color: var(--shimaMoraDark); text-align: center"> Hola, ¿A dónde nos vamos de viaje? </div>
                         <div _ngcontent-serverapp-c3="" class="columns-inputs-group">
                             <div _ngcontent-serverapp-c3="" class="input-field column-origen">
-                                <select name="origen" class="form-control" id="cmbAgenciasUC" style="max-width: 200px" data-index="4">
+                                <select name="origens" class="form-control" id="cmbAgenciasUC" style="max-width: 200px" data-index="4">
                                     <span class="ant-form-item-children">
                                         <i _ngcontent-serverapp-c3="" class="" style="position: absolute; top: 2px; left: 10px; z-index: 10; border: 3px solid var(--shimaAmarillo); height: 12px; width: 12px; border-radius: 100%"></i></span>
-                                        <option value="0">origen</option>
-                                        @foreach ($origenes as $origen) 
-                                         <option value="{{$origen['id']}}">{{$origen['nombre_origen']}}</option>
-                                        @endforeach
-                                        
-                                       
+                                    <option value="0">origen</option>
+                                    @foreach ($origenes as $origen)
+                                    <option value="{{$origen['id']}}">{{$origen['nombre_origen']}}</option>
+                                    @endforeach
+
+
                                     <span class="ant-select-search__field__mirror ng-tns-c15-4 ng-star-inserted"></span>
                                 </select>
                             </div>
@@ -136,15 +134,15 @@
                                 <nz-form-item _ngcontent-serverapp-c3="" nzspan="24" style="margin: 0px" class="ant-form-item ant-row">
                                     <nz-form-control _ngcontent-serverapp-c3="" nzerrortip="" class="ng-tns-c8-2 ant-form-item-control-wrapper ant-col ng-star-inserted">
                                         <div class="ant-form-item-control">
-                                            <select name="destino" class="form-control" id="cmbAgenciasUC" style="max-width: 200px" data-index="4">
+                                            <select name="destinos" class="form-control" id="cmbAgenciasUC" style="max-width: 200px" data-index="4">
                                                 <span class="ant-form-item-children">
                                                     <i _ngcontent-serverapp-c3="" class="" style="position: absolute; top: 2px; left: 10px; z-index: 10; border: 3px solid var(--shimaAmarillo); height: 12px; width: 12px; border-radius: 100%"></i></span>
                                                 <option value="0">Destino</option>
-                                                @foreach ($origenes as $origen) 
-                                         <option value="{{$origen['id']}}">{{$origen['nombre_origen']}}</option>
-                                        @endforeach
+                                                @foreach ($origenes as $origen)
+                                                <option value="{{$origen['id']}}">{{$origen['nombre_origen']}}</option>
+                                                @endforeach
                                                 <span class="ant-select-search__field__mirror ng-tns-c15-4 ng-star-inserted"></span>
-                                            required
+                                                required
                                             </select>
                                             <nz-select _ngcontent-serverapp-c3="" formcontrolname="destino" nzallowclear="" nzshowsearch="" nzsize="large" class="ng-tns-c9-3 ant-select ant-select-lg ant-select-enabled ant-select-allow-clear ng-untouched ng-pristine ng-invalid ng-star-inserted">
                                             </nz-select>
@@ -156,19 +154,29 @@
                             <div _ngcontent-serverapp-c3="" class="input column-fechaIda">
                                 <div _ngcontent-serverapp-c3="" class="w-form">
                                     <div _ngcontent-serverapp-c3="" class="input-group mb-0">
+                                        @foreach ($orders as $order)
+                                        @endforeach
                                         <label class="form-control-label label-title">Salida:</label>
-                                        <input type="date" name="fechasalida" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" />
+                                        <input type="date" name="fechasalidas" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" value="{{$order->fecha}}" :disabled="true"></input>
+                                        <input hidden type="text" name="nombres" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->nombres}}"></input>
+                                        <input hidden type="text" name="apellidos" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->apellidos}}"></input>
+                                        <input hidden type="text" name="origen" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->origen}}"></input>
+                                        <input hidden type="text" name="destino" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->destino}}"></input>
+                                        <input hidden type="number" name="precio" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->precio}}"></input>
+                                        <input hidden type="number" name="dni" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->dni}}">
+                                        </input>
+                                        <input hidden type="number" name="asiento" value="{{$order->asiento}}" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true">
+                                        </input>
+                                        <input hidden name="fechasalida" value="{{$order->fecha}}" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true">
+                                        </input>
+                                        <input hidden name="hora_sal" value="{{$order->hora}}" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true">
+                                        </input>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div _ngcontent-serverapp-c3="" class="input column-fechaIda">
-                            <button 
-                            _ngcontent-serverapp-c3="" 
-                              id="btnBuscarItinerario" 
-                              type="submit"
-                              class="btn mb-2 btn-buscar-home"
-                              >Buscar</button>
+                            <button _ngcontent-serverapp-c3="" id="btnBuscarItinerario" type="submit" class="btn mb-2 btn-buscar-home">Buscar</button>
                         </div>
                     </div>
                 </form>

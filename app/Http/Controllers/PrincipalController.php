@@ -21,7 +21,9 @@ use App\models\Permisos\Permisos_Usuario;
 use App\models\Origen;
 use App\models\ViajeDetalle;
 use App\models\Order;
+use App\models\VentaDetalle;
 
+use GuzzleHttp\Promise\Create;
 
 use function GuzzleHttp\Promise\all;
 
@@ -31,12 +33,16 @@ class PrincipalController extends Controller
     public function Welcome()
     {
         // dd(session()->all());
-        $origenes = Origen::select('id', 'nombre_origen')->get();
+        $origenes = Origen::select('id', 'nombre_origen')
+        ->get();
+        $orders = Order::all();
+        // dd($origenes);
+        
         session()->forget('usuario_dni');
         session()->forget('email');
         session()->forget('clave');
         session()->forget('nombres');
-    return view('welcome', compact('origenes'));
+    return view('welcome', compact('origenes', 'orders'));
     
     }
 
@@ -182,45 +188,92 @@ class PrincipalController extends Controller
     }
 
     public function Pago(Request $request){
+        // dd($request);
         $origen = $request->origen;
         $destino = $request->destino;
+        //del select ---
+        $origens = $request->origens;
+        $destinos = $request->destinos;
+        // fin----
+
+        $nombres = $request->nombres;
+        $apellidos = $request->apellidos;
         $fecha = $request->fechasalida;
-        $datos = $request->all();
+        $dni = $request->dni;
+        $precio = $request->precio;
+        $hora = $request->hora_sal;
+        $asiento = $request->asiento;
+
+        // $datos = $request->all();
+        // dd($datos);
         $origenes = Origen::select(
-            'id', 'nombre_origen'
+            'id', 'nombre_origen', 'origen'
         )
-        ->where('id', $origen)
+        ->join('orders', 'nombre_origen', '=', 'origen')
+        ->where('nombre_origen', $origen)
         ->get();
+        
         $destinos = Origen::select(
-            'id', 'nombre_origen'
+            'id', 'nombre_origen', 'origen'
         )
-        ->where('id', $destino)
+        ->join('orders', 'nombre_origen', '=', 'destino')
+        ->where('nombre_origen', $destino)
         ->get();
 
-        $datosviajes = Order::all();
-        $viaje_detalles = ViajeDetalle::all();
+        // dd($origenes, $destinos);
+        // $datosviajes = Order::all();
+        // $viaje_detalles = ViajeDetalle::all();
         // dd($datos);
-        return view('pago', compact('viaje_detalles'), compact('origenes', 'destinos', 'datos', 'datosviajes'));
+        return view('pago', compact('origenes', 'destinos', 'fecha', 'dni', 'precio', 'hora', 'asiento', 'nombres', 'apellidos'));
     }
     
     public function pagado(Request $request){
-        dd($request);
+        // return ($request);
         $order = new Order();
-        $order->id = Auth::id();
-        $order->fname = $request->input('fname');
-        $order->lname = $request->input('lname');
-        $order->email = $request->input('email');
-        $order->payment_mode = $request->input('payment_mode');
-        $order->payment_id = $request->input('payment_id');
+        $order->metodo_pago = $request->payment_mode;
+        $origen = $request->origen;
+        $destino = $request->destino;
+        $dni = $request->dni;
+        $asiento = $request->asiento;
+        $fecha = $request->fecha;
+        $firstname = $request->firstname;
+        $hora = $request->hora;
+        $lastname = $request->lastname;
+        $payment_id = $request->payment_id;
+        $payment_mode = $request->payment_mode;
+        $precio = $request->precio;
         
-        //PARA CALCULAR EL PRECIO TOTAL
-        $total = 30.00;
-        $order->precio_total = $total;
-        $order->save();
 
-        if($request->input('payment_mode') == "pagado por paypal"){
-            return response()->json(['status' => "Order placed Successfully"]);
+        $id_origen = Origen::select(
+            'id'
+        )
+        ->where('nombre_origen', $origen)
+        ->get();
+        // $id_o = $id_origen->id;
+
+        foreach ($id_origen as $id_o){
+            $id_or = $id_o->id;
         }
-        return redirect('/')->with('status','order placed');
+
+        $id_destino = Origen::select(
+            'id'
+        )
+        ->where('nombre_origen', $destino)
+        ->get();
+
+        foreach ($id_destino as $id_des){
+            $id_d = $id_des->id;
+        }
+        
+       ViajeDetalle::create([
+            'id_origen' => 1,
+            'id_destino' => 4,
+            'precio_viaje' => "prueba",
+            'hora_salida' => "prueba",
+            'fecha_salida' => "prueba",
+            'id_minivan' => "prueba"
+       ]);
+        return redirect();
+
     }
 }

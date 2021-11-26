@@ -35,6 +35,8 @@
     <!-- SCRIPT PAGO CON PAYPAL -->
     <script src="https://www.paypal.com/sdk/js?client-id=Af47qW5mnhYAMwBLNXQW108GV8uA9uYR5Aisif1BKbDyIBlZNBnTTRNbWnQHTWxxG8z9PlpeE_qbcjHJ&locale=es_ES"> </script>
 
+    <!-- token de seguridad -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
 </head>
@@ -113,23 +115,7 @@
 
     <section class="seccion contenedor">
         <h2>Pasarela de Pagos</h2>
-        <form id="registro" class="registro" action="/pagado'" method="post">
-            {{-- <div id="datos_usuario" class="registro caja clearfix">
-                <div class="campo">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="fname" placeholder="Tu Nombre">
-                </div>
-                <div class="campo">
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="lname" placeholder="Tu Apellido">
-                </div>
-                <div class="campo">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Tu Email">
-                </div>
-                <div id="error"></div>
-            </div>
-            <!--#datos_usuario--> --}}
+        <form class="registro" action="/pagado'" method="POST">
 
             <div class="col-md-6 login-form-2">
                 <!-- <form action="{{ route('registrar.verificar_usuario') }}" method="post" autocomplete="off"> -->
@@ -137,44 +123,55 @@
                 <!-- <h3>Todos los días</h3> -->
                 <h3>Verifique sus datos</h3>
                 <div class="col register-content">
-                    @foreach ($datosviajes as $datosviaje)
+
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">NOMBRES</label>
-                        <p class="text" name="fname">{{$datosviaje->nombres}}</p>
+                        <p name="fname" id="fname" class="text">{{$nombres}}</p>
                     </div>
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">APELLIDOS</label>
-                        <p class="text" name="lname">{{$datosviaje->apellidos}}</p>
+                        <p id="lname" name="lname" class="text">{{$apellidos}}</p>
                     </div>
 
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">PRECIO</label>
-                            <p class="text" name="precio">{{$datosviaje->precio}}</p>
+                        <p id="precio" name="precio" class="text">{{$precio}}</p>
                     </div>
                     <!-- <div class="row form-group">
                             <input type="number" name="dni" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" placeholder="Documento de Identidad" spellcheck="false" id="txtInputs" />
                         </div> -->
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">DNI</label>
-                            <p class="text" name="dni">{{$datosviaje->dni}}</p>
+                        <p id="dni" name="dni" class="text">{{$dni}}</p>
                     </div>
 
+                    @foreach($origenes as $origen)
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">ORIGEN</label>
-                        <p class="text" name="origen">{{$datosviaje->origen}}</p>
+                        <p id="origen" name="origen" class="text">{{$origen->nombre_origen}}</p>
+                    </div>
+                    @endforeach
+                    @foreach($destinos as $destino)
+                    <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">DESTINO</label>
+                        <p id="destino" name="destino" class="text">{{$destino->nombre_origen}}</p>
+                    </div>
+                    @endforeach
+
+                    <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">FECHA SALIDA</label>
+                        <p id="fecha" name="fecha" class="text">{{$fecha}}</p>
                     </div>
 
                     <div class="row form-group">
-                        <label for="inpdni" class="form-control-label label-title">DESTINO</label>
-                        <p class="text" name="destino">{{$datosviaje->destino}}</p>
+                        <label for="inpdni" class="form-control-label label-title">HORA SALIDA</label>
+                        <p id="hora" name="hora" class="text">{{$hora}}</p>
                     </div>
 
-                    @endforeach
-
-                    <!-- 
-                        <div class="row form-group">
-                            <button type="button" class="btn btn-link" id="tienes_cuenta"> <a href="{{route('gen.login')}}">¿Ya tiene una cuenta?</a></button>
-                        </div> -->
+                    <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">ASIENTO</label>
+                        <p id="asiento" name="asiento" class="text">{{$asiento}}</p>
+                    </div>
                     <h3>Realiza el pago</h3>
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">PAGAR CON PAYPAL</label>
@@ -297,33 +294,48 @@
                 });
             },
             onApprove: function(data, actions) {
+                console.log("actiun", actions);
                 // This function captures the funds from the transaction.
                 return actions.order.capture().then(function(details) {
                     // This function shows a transaction success message to your buyer.
-                    alert('Transaction completed by ' + details.payer.name.given_name);
+                    alert('Pago completado por ' + details.payer.name.given_name);
 
-                    var firstname = $('.firstname').val();
-                    var lastname = $('.lastname').val();
-                    var email = $('.email').val();
-                    // var firstname = $('.firstname').val();
-                    // var firstname = $('.firstname').val();
 
-                    $.ajax({
-                        method: 'POST',
-                        url: '/pagado',
-                        data: {
-                            'fname': firstname,
-                            'lname': lastname,
-                            'email': email,
-                            'payment_mode': "pagado por paypal",
-                            'payment_id': details.id,
-                        },
-                        success: function(response) {
-                            swal(response.status);
-                            console.log(response);
-                            window.location.href = "/";
-                        }
-                    })
+                    // . <- punto por id
+                    // # <- numeral por clase
+                    var firstname = $('#fname').text();
+                    var lastname = $('#lname').text();
+                    var dni = $('#dni').text();
+                    var precio = $('#precio').text();
+                    var origen = $('#origen').text();
+                    var destino = $('#destino').text();
+                    var fecha = $('#fecha').text();
+                    var hora = $('#hora').text();
+                    var asiento = $('#asiento').text();
+                    var payment_mode = "pagado por paypal";
+                    var payment_id = details.id;
+
+                    let data = new FormData();
+                    data.append("firstname", firstname);
+                    data.append("lastname", lastname);
+                    data.append("dni", dni);
+                    data.append("precio", precio);
+                    data.append("origen", origen);
+                    data.append("destino", destino);
+                    data.append("fecha", fecha);
+                    data.append("hora", hora);
+                    data.append("asiento", asiento);
+                    data.append("payment_mode", payment_mode);
+                    data.append("payment_id", payment_id);
+
+                    axios
+                        .post('/pagado', data).then(function(response) {
+                            // swal(response.data);
+                            console.log(response.data);
+                            // window.location.href = "/";
+
+                        })
+
                     // var paypalForm = document.getElementById('paypal-form');
                     // var detailsInput = document.getElementById('details-input');
 
@@ -333,6 +345,7 @@
                     // console.log(detailsInput);
                     // paypalForm.submit();
                 });
+
             }
 
         }).render('#paypal-button-container');
