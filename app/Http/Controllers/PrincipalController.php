@@ -19,9 +19,10 @@ use App\models\Usuario;
 use App\models\Permisos\Permiso;
 use App\models\Permisos\Permisos_Usuario;
 use App\models\Origen;
-use App\models\ViajeDetalle;
+use App\models\Venta_detalle;
 use App\models\Order;
-use App\models\VentaDetalle;
+use App\models\ViajeDetalle;
+
 
 use GuzzleHttp\Promise\Create;
 
@@ -34,16 +35,15 @@ class PrincipalController extends Controller
     {
         // dd(session()->all());
         $origenes = Origen::select('id', 'nombre_origen')
-        ->get();
+            ->get();
         $orders = Order::all();
-        // dd($origenes);
-        
+        // dd($orders);
+
         session()->forget('usuario_dni');
         session()->forget('email');
         session()->forget('clave');
         session()->forget('nombres');
-    return view('welcome', compact('origenes', 'orders'));
-    
+        return view('welcome', compact('origenes', 'orders'));
     }
 
     public function Login()
@@ -84,7 +84,7 @@ class PrincipalController extends Controller
                 return redirect('/login');
                 exit();
             }
-        }else{
+        } else {
             Session::flash('email_no_valido', 'Usuario incorrecto, intente nuevamente');
             return redirect('/iniciar_sesion');
             exit();
@@ -104,7 +104,7 @@ class PrincipalController extends Controller
             ->select(
                 'id',
                 'nombre_origen',
-                'direcion', 
+                'direcion',
                 'telefono'
             )
             ->get();
@@ -115,7 +115,7 @@ class PrincipalController extends Controller
         $x = session()->all();
 
         $dni_registrado = Session::get('dni_registrado');
-        
+
         $existe_usuario = Usuario::select('dni')->where('dni', $dni_registrado)->get();
 
 
@@ -136,8 +136,6 @@ class PrincipalController extends Controller
                 }
             } */
         }
-
-        
     }
 
     public function cerrar_sesion()
@@ -146,7 +144,6 @@ class PrincipalController extends Controller
         session()->forget('email');
         session()->forget('clave');
         session()->forget('nombres');
-        
     }
 
     // -----------------------------------APIS-----------------------------------
@@ -176,7 +173,7 @@ class PrincipalController extends Controller
         $id_permiso = Permiso::select('id')->where('modulo', $modulo)->where('area', $area)->get();
 
         $result = Permisos_Usuario::from('permisos_usuarios as pu')
-        ->select('pu.id')
+            ->select('pu.id')
             ->where('pu.id_permiso', $id_permiso[0]['id'])->where('pu.dni', $dni)->get();
         if (empty($result[0]['id'])) {
             $band = 0;
@@ -187,7 +184,8 @@ class PrincipalController extends Controller
         return $band;
     }
 
-    public function Pago(Request $request){
+    public function Pago(Request $request)
+    {
         // dd($request);
         $origen = $request->origen;
         $destino = $request->destino;
@@ -207,18 +205,22 @@ class PrincipalController extends Controller
         // $datos = $request->all();
         // dd($datos);
         $origenes = Origen::select(
-            'id', 'nombre_origen', 'origen'
+            'id',
+            'nombre_origen',
+            'origen'
         )
-        ->join('orders', 'nombre_origen', '=', 'origen')
-        ->where('nombre_origen', $origen)
-        ->get();
-        
+            ->join('orders', 'nombre_origen', '=', 'origen')
+            ->where('nombre_origen', $origen)
+            ->get();
+
         $destinos = Origen::select(
-            'id', 'nombre_origen', 'origen'
+            'id',
+            'nombre_origen',
+            'origen'
         )
-        ->join('orders', 'nombre_origen', '=', 'destino')
-        ->where('nombre_origen', $destino)
-        ->get();
+            ->join('orders', 'nombre_origen', '=', 'destino')
+            ->where('nombre_origen', $destino)
+            ->get();
 
         // dd($origenes, $destinos);
         // $datosviajes = Order::all();
@@ -226,11 +228,10 @@ class PrincipalController extends Controller
         // dd($datos);
         return view('pago', compact('origenes', 'destinos', 'fecha', 'dni', 'precio', 'hora', 'asiento', 'nombres', 'apellidos'));
     }
-    
-    public function pagado(Request $request){
+
+    public function pagado(Request $request)
+    {
         // return ($request);
-        $order = new Order();
-        $order->metodo_pago = $request->payment_mode;
         $origen = $request->origen;
         $destino = $request->destino;
         $dni = $request->dni;
@@ -242,38 +243,50 @@ class PrincipalController extends Controller
         $payment_id = $request->payment_id;
         $payment_mode = $request->payment_mode;
         $precio = $request->precio;
-        
+
 
         $id_origen = Origen::select(
             'id'
         )
-        ->where('nombre_origen', $origen)
-        ->get();
+            ->where('nombre_origen', $origen)
+            ->get();
         // $id_o = $id_origen->id;
 
-        foreach ($id_origen as $id_o){
+        foreach ($id_origen as $id_o) {
             $id_or = $id_o->id;
         }
 
         $id_destino = Origen::select(
             'id'
         )
-        ->where('nombre_origen', $destino)
-        ->get();
+            ->where('nombre_origen', $destino)
+            ->get();
 
-        foreach ($id_destino as $id_des){
+        foreach ($id_destino as $id_des) {
             $id_d = $id_des->id;
         }
-        
-       ViajeDetalle::create([
-            'id_origen' => 1,
-            'id_destino' => 4,
-            'precio_viaje' => "prueba",
-            'hora_salida' => "prueba",
-            'fecha_salida' => "prueba",
-            'id_minivan' => "prueba"
-       ]);
-        return redirect();
 
+        // $venta = Venta_detalle::all();
+
+        $id_viaje_detalle = ViajeDetalle::create(array(
+            'id_origen' => $id_or,
+            'id_destino' => $id_d,
+            'precio_viaje' => $precio,
+            'hora_salida' => $hora,
+            'fecha_salida' => $fecha,
+            'id_minivan' => $asiento,
+        ));
+        $id_viaje = $id_viaje_detalle->id;
+
+        Venta_detalle::create(array(
+            'id_viaje_detalle' => $id_viaje,
+            'dni_usuario' => $dni,
+            'pagado' => 1,
+            'metodo_pago' => $payment_mode,
+        ));
+
+        Order::where('dni', $dni)->delete();
+
+        return "EXITO";
     }
 }

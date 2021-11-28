@@ -298,7 +298,7 @@
                 // This function captures the funds from the transaction.
                 return actions.order.capture().then(function(details) {
                     // This function shows a transaction success message to your buyer.
-                    alert('Pago completado por ' + details.payer.name.given_name);
+                    // alert('Pago completado por ' + details.payer.name.given_name);
 
 
                     // . <- punto por id
@@ -330,8 +330,21 @@
 
                     axios
                         .post('/pagado', data).then(function(response) {
-                            // swal(response.data);
-                            console.log(response.data);
+                            // console.log(response.data);
+                            let resultado = response.data;
+                            
+                            if (resultado == "EXITO") {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "¡EXITO!",
+                                    text: "Pago registrada por " + details.payer.name.given_name,
+                                    allowOutsideClick: false,
+                                    confirmButtonText: 'Aceptar',
+                                    preConfirm: (result) => {
+                                        window.location.href = "{{route('paypalPay')}}";
+                                    },
+                                });
+                            }
                             // window.location.href = "/";
 
                         })

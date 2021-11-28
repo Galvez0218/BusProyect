@@ -17,6 +17,6 @@ class ViajeDetalle extends Model
         'precio_viaje',
         'hora_salida',
         'fecha_salida',
-        'id_minivan',
+        'id_minivan'
     ];  
 }

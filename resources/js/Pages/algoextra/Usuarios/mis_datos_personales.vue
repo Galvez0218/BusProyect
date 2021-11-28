@@ -221,31 +221,42 @@
             <table class="table table-hover" id="tblHorarioAsignado">
               <thead>
                 <tr>
-                  <th style="width: 70px !important">NOMBRE HORARIO</th>
-                  <th>HORA SALIDA<br /></th>
-                  <th>PAGADO<br /></th>
-                  <th>ASIENTO<br /></th>
-                  <th>MINIBAN<br /></th>
-                  <!-- <th>TOLERANCIA HORARIO</th>
-                  <th>TOLERANCIA PERSONAL</th> -->
+                  <th style="width: 70px !important">ORIGEN</th>
+                  <th>DESTINO<br /></th>
+                  <th>N° ASIENTO<br /></th>
+                  <th>PRECIO<br /></th>
+                  <th>PAGADO</th>
+                  <th>METODO DE PAGO</th>
+                  <th>FECHA_SALIDA</th>
+                  <th>HORA_SALIDA</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr v-for="(detalles_viajes, index) in detalles_viaje"
+                    v-bind:key="index">
                   <td class="table-bordered" align="center">
-                    {{ mi_usuario[0].nombre_horario }}
+                    {{ detalles_viajes.origen }}
                   </td>
                   <td class="table-bordered" align="center">
-                    {{ mi_usuario[0].hora_entrada_maniana }}
+                    {{ detalles_viajes.destino }}
                   </td>
                   <td class="table-bordered" align="center">
-                    {{ mi_usuario[0].hora_salida_maniana }}
+                    {{ detalles_viajes.id_minivan }}
                   </td>
                   <td class="table-bordered" align="center">
-                    {{ mi_usuario[0].hora_entrada_tarde }}
+                    {{ detalles_viajes.precio_viaje }}
                   </td>
                   <td class="table-bordered" align="center">
-                    {{ mi_usuario[0].hora_salida_tarde }}
+                    {{ detalles_viajes.pagado == '0' ? 'NO' :'SI' }}
+                  </td>
+                  <td class="table-bordered" align="center">
+                    {{ detalles_viajes.metodo_pago }}
+                  </td>
+                  <td class="table-bordered" align="center">
+                    {{ detalles_viajes.fecha_salida }}
+                  </td>
+                  <td class="table-bordered" align="center">
+                    {{ detalles_viajes.hora_salida }}
                   </td>
                 </tr>
               </tbody>
@@ -266,6 +277,7 @@ export default {
   components: { layout, headerClose },
   props: {
     mi_usuario: Array,
+    detalles_viaje: Array,
   },
   data() {
     return {

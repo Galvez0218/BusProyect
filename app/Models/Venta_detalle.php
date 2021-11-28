@@ -5,9 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class VentaDetalle extends Model
+class Venta_detalle extends Model
 {
-    use HasFactory;
+    // use HasFactory;
     protected $table = 'venta_detalle';
     protected $primaryKey = "id";
 
@@ -15,6 +15,6 @@ class VentaDetalle extends Model
         'id_viaje_detalle',
         'dni_usuario',
         'pagado',
-        'metodo_pago'
+        'metodo_pago',
     ];  
 }

@@ -2340,6 +2340,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2354,7 +2365,8 @@ var diferentThanZero = function diferentThanZero(value) {
     headerClose: _Components_header_close__WEBPACK_IMPORTED_MODULE_1__.default
   },
   props: {
-    mi_usuario: Array
+    mi_usuario: Array,
+    detalles_viaje: Array
   },
   data: function data() {
     return {
@@ -29703,101 +29715,159 @@ var render = function() {
                           _c(
                             "th",
                             { staticStyle: { width: "70px !important" } },
-                            [_vm._v("NOMBRE HORARIO")]
+                            [_vm._v("ORIGEN")]
                           ),
                           _vm._v(" "),
-                          _c("th", [_vm._v("HORA SALIDA"), _c("br")]),
+                          _c("th", [_vm._v("DESTINO"), _c("br")]),
                           _vm._v(" "),
-                          _c("th", [_vm._v("PAGADO"), _c("br")]),
+                          _c("th", [_vm._v("N° ASIENTO"), _c("br")]),
                           _vm._v(" "),
-                          _c("th", [_vm._v("ASIENTO"), _c("br")]),
+                          _c("th", [_vm._v("PRECIO"), _c("br")]),
                           _vm._v(" "),
-                          _c("th", [_vm._v("MINIBAN"), _c("br")])
+                          _c("th", [_vm._v("PAGADO")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("METODO DE PAGO")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("FECHA_SALIDA")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("HORA_SALIDA")])
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("tbody", [
-                        _c("tr", [
-                          _c(
-                            "td",
-                            {
-                              staticClass: "table-bordered",
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(_vm.mi_usuario[0].nombre_horario) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "table-bordered",
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(
-                                    _vm.mi_usuario[0].hora_entrada_maniana
-                                  ) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "table-bordered",
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(
-                                    _vm.mi_usuario[0].hora_salida_maniana
-                                  ) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "table-bordered",
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(_vm.mi_usuario[0].hora_entrada_tarde) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "table-bordered",
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(_vm.mi_usuario[0].hora_salida_tarde) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        ])
-                      ])
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.detalles_viaje, function(
+                          detalles_viajes,
+                          index
+                        ) {
+                          return _c("tr", { key: index }, [
+                            _c(
+                              "td",
+                              {
+                                staticClass: "table-bordered",
+                                attrs: { align: "center" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(detalles_viajes.origen) +
+                                    "\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "table-bordered",
+                                attrs: { align: "center" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(detalles_viajes.destino) +
+                                    "\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "table-bordered",
+                                attrs: { align: "center" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(detalles_viajes.id_minivan) +
+                                    "\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "table-bordered",
+                                attrs: { align: "center" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(detalles_viajes.precio_viaje) +
+                                    "\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "table-bordered",
+                                attrs: { align: "center" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      detalles_viajes.pagado == "0"
+                                        ? "NO"
+                                        : "SI"
+                                    ) +
+                                    "\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "table-bordered",
+                                attrs: { align: "center" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(detalles_viajes.metodo_pago) +
+                                    "\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "table-bordered",
+                                attrs: { align: "center" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(detalles_viajes.fecha_salida) +
+                                    "\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "table-bordered",
+                                attrs: { align: "center" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(detalles_viajes.hora_salida) +
+                                    "\n                "
+                                )
+                              ]
+                            )
+                          ])
+                        }),
+                        0
+                      )
                     ]
                   )
                 ])
