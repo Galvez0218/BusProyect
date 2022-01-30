@@ -123,6 +123,10 @@
                 <!-- <h3>Todos los días</h3> -->
                 <h3>Verifique sus datos</h3>
                 <div class="col register-content">
+                <div class="row form-group">
+                        <label for="inpdni" class="form-control-label label-title">DNI</label>
+                        <p id="dni" name="dni" class="text">{{$dni}}</p>
+                    </div>
 
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">NOMBRES</label>
@@ -140,10 +144,7 @@
                     <!-- <div class="row form-group">
                             <input type="number" name="dni" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" placeholder="Documento de Identidad" spellcheck="false" id="txtInputs" />
                         </div> -->
-                    <div class="row form-group">
-                        <label for="inpdni" class="form-control-label label-title">DNI</label>
-                        <p id="dni" name="dni" class="text">{{$dni}}</p>
-                    </div>
+                    
 
                     @foreach($origenes as $origen)
                     <div class="row form-group">
