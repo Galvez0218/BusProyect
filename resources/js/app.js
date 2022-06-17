@@ -1,5 +1,5 @@
 require('./bootstrap');
-window.Swal = require("sweetalert2");
+// window.Swal = require("sweetalert2");
 
 import { App, plugin } from '@inertiajs/inertia-vue'
 import Vue from 'vue'

@@ -22,6 +22,7 @@ use App\models\Origen;
 use App\models\Venta_detalle;
 use App\models\Order;
 use App\models\ViajeDetalle;
+use App\models\Precios_ruta;
 
 
 use GuzzleHttp\Promise\Create;
@@ -183,20 +184,38 @@ class PrincipalController extends Controller
 
         return $band;
     }
+    function obtenerFechaEnLetra($fecha){
+        $dia= $this->conocerDiaSemanaFecha($fecha);
+        $num = date("j", strtotime($fecha));
+        $anno = date("Y", strtotime($fecha));
+        $mes = array('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre');
+        $mes = $mes[(date('m', strtotime($fecha))*1)-1];
+        return $dia.', '.$num.' de '.$mes.' del '.$anno;
+    }
+     
+    function conocerDiaSemanaFecha($fecha) {
+        $dias = array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado');
+        $dia = $dias[date('w', strtotime($fecha))];
+        return $dia;
+    }
 
     public function Pago(Request $request)
     {
         // dd($request);
+        // de la tabla orders
         $origen = $request->origen;
         $destino = $request->destino;
+        // fin tabla orders
+
         //del select ---
         $origens = $request->origens;
         $destinos = $request->destinos;
+        $fecha = $request->fechasalidas;
         // fin----
 
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;
-        $fecha = $request->fechasalida;
+        
         $dni = $request->dni;
         $precio = $request->precio;
         $hora = $request->hora_sal;
@@ -204,29 +223,61 @@ class PrincipalController extends Controller
 
         // $datos = $request->all();
         // dd($datos);
+        $hora_salidas = Precios_ruta::from('precios_rutas as pr')
+        ->select(
+            'pr.id',
+            'pr.id_origen',
+            'pr.id_destino',
+            'pr.precio',
+            'pr.hora_salida',
+            'o.id'
+        )
+        ->join('origenes as o', 'id_origen','=','o.id')
+        ->where('id_origen', $origens)
+        ->where('id_destino', $destinos)
+        ->get(); 
+        foreach ($hora_salidas as $precio) {
+            $precio = $precio->precio;
+        }
+        // dd($precio);
+
         $origenes = Origen::select(
             'id',
             'nombre_origen',
-            'origen'
         )
-            ->join('orders', 'nombre_origen', '=', 'origen')
-            ->where('nombre_origen', $origen)
+            // ->join('orders', 'nombre_origen', '=', 'origen')
+            ->where('id', $origens)
             ->get();
 
         $destinos = Origen::select(
             'id',
             'nombre_origen',
-            'origen'
         )
-            ->join('orders', 'nombre_origen', '=', 'destino')
-            ->where('nombre_origen', $destino)
+            ->where('id', $destinos)
             ->get();
 
-        // dd($origenes, $destinos);
+        $fecha = $this->obtenerFechaEnLetra($fecha);
+        $hora_salidas = Precios_ruta::from('precios_rutas as pr')
+        ->select(
+            'pr.id',
+            'pr.id_origen',
+            'pr.id_destino',
+            'pr.precio',
+            'pr.hora_salida',
+            'o.id'
+        )
+        ->join('origenes as o', 'id_origen','=','o.id')
+        ->where('id_origen', $origens)
+        ->where('id_destino', $destinos)
+        ->get();
+
+        
+
+        // dd($this->obtenerFechaEnLetra($fecha));
         // $datosviajes = Order::all();
         // $viaje_detalles = ViajeDetalle::all();
         // dd($datos);
-        return view('pago', compact('origenes', 'destinos', 'fecha', 'dni', 'precio', 'hora', 'asiento', 'nombres', 'apellidos'));
+        return view('pago', compact('origenes', 'destinos', 'fecha', 'dni', 'precio', 'hora_salidas', 'asiento', 'nombres', 'apellidos'));
     }
 
     public function pagado(Request $request)

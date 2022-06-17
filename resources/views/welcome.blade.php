@@ -157,20 +157,20 @@
                                         @foreach ($orders as $order)
                                         @endforeach
                                         <label class="form-control-label label-title">Salida:</label>
-                                        <input type="date" name="fechasalidas" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" value="{{$order->fecha}}" :disabled="true"></input>
-                                        <input hidden type="text" name="nombres" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->nombres}}"></input>
+                                        <input type="date" name="fechasalidas" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento"  :disabled="true"></input>
+                                        <!-- <input hidden type="text" name="nombres" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->nombres}}"></input>
                                         <input hidden type="text" name="apellidos" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->apellidos}}"></input>
                                         <input hidden type="text" name="origen" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->origen}}"></input>
                                         <input hidden type="text" name="destino" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->destino}}"></input>
                                         <input hidden type="number" name="precio" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->precio}}"></input>
-                                        <input hidden type="number" name="dni" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->dni}}">
-                                        </input>
-                                        <input hidden type="number" name="asiento" value="{{$order->asiento}}" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true">
+                                        <input hidden type="number" name="dni" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true" value="{{$order->dni}}"> -->
+                                        <!-- </input> -->
+                                        <!-- <input hidden type="number" name="asiento" value="{{$order->asiento}}" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true">
                                         </input>
                                         <input hidden name="fechasalida" value="{{$order->fecha}}" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true">
                                         </input>
                                         <input hidden name="hora_sal" value="{{$order->hora}}" class="form-control center" style="max-width: 200px" v-model="form_datos_cesado.fechaNacimiento" :disabled="true">
-                                        </input>
+                                        </input> -->
                                     </div>
                                 </div>
                             </div>
