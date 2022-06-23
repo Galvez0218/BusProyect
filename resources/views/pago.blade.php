@@ -125,19 +125,19 @@
                 <div class="col register-content">
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">DNI</label>
-                        <input type="number" name="dniBuscar" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" placeholder="Documento de Identidad" spellcheck="false" id="txtInputs" />
+                        <input type="number" id="dni" name="dni" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" placeholder="Documento de Identidad" spellcheck="false" />
                         <!-- <a href="">buscar</a> -->
                         <!-- <p id="dni" name="dni" class="text">{{$dni}}</p> -->
                     </div>
 
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">NOMBRES</label>
-                        <input type="text" name="nombres" autocomplete="nope" class="form-control" placeholder="Nombres" spellcheck="false" id="txtInputs" />
+                        <input type="text" name="fname" id="fname" autocomplete="nope" class="form-control" placeholder="Nombres" spellcheck="false" />
                         <!-- <p name="fname" id="fname" class="text">{{$nombres}}</p> -->
                     </div>
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">APELLIDOS</label>
-                        <input type="text" name="apellidos" autocomplete="nope" class="form-control" placeholder="Apellidos" spellcheck="false" id="txtInputs" />
+                        <input type="text" id="lname" name="lname" autocomplete="nope" class="form-control" placeholder="Apellidos" spellcheck="false" />
                         <!-- <p id="lname" name="lname" class="text">{{$apellidos}}</p> -->
                     </div>
 
@@ -314,9 +314,9 @@
 
                     // . <- punto por id
                     // # <- numeral por clase
-                    var firstname = $('#fname').text();
-                    var lastname = $('#lname').text();
-                    var dni = $('#dni').text();
+                    var firstname = $('#fname').val();
+                    var lastname = $('#lname').val();
+                    var dni = $('#dni').val();
                     var precio = $('#precio').text();
                     var origen = $('#origen').text();
                     var destino = $('#destino').text();
@@ -341,7 +341,7 @@
 
                     axios
                         .post('/pagado', data).then(function(response) {
-                            // console.log(response.data);
+                            console.log(response.data);
                             let resultado = response.data;
 
                             if (resultado == "EXITO") {

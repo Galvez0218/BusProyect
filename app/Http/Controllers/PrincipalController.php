@@ -239,7 +239,7 @@ class PrincipalController extends Controller
         foreach ($hora_salidas as $precio) {
             $precio = $precio->precio;
         }
-        // dd($precio);
+        // dd($hora_salidas);
 
         $origenes = Origen::select(
             'id',
@@ -257,19 +257,6 @@ class PrincipalController extends Controller
             ->get();
 
         $fecha = $this->obtenerFechaEnLetra($fecha);
-        $hora_salidas = Precios_ruta::from('precios_rutas as pr')
-        ->select(
-            'pr.id',
-            'pr.id_origen',
-            'pr.id_destino',
-            'pr.precio',
-            'pr.hora_salida',
-            'o.id'
-        )
-        ->join('origenes as o', 'id_origen','=','o.id')
-        ->where('id_origen', $origens)
-        ->where('id_destino', $destinos)
-        ->get();
 
         
 
@@ -323,9 +310,9 @@ class PrincipalController extends Controller
             'id_origen' => $id_or,
             'id_destino' => $id_d,
             'precio_viaje' => $precio,
-            'hora_salida' => $hora,
+            // 'hora_salida' => $hora,
             'fecha_salida' => $fecha,
-            'id_minivan' => $asiento,
+            // 'id_minivan' => $asiento,
         ));
         $id_viaje = $id_viaje_detalle->id;
 
