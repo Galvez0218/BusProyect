@@ -178,10 +178,23 @@
                         </select>
                     </div>
 
-                    <!-- <div class="row form-group">
+                    <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">ASIENTO</label>
-                        <p id="asiento" name="asiento" class="text">{{$asiento}}</p>
-                    </div> -->
+                        <select name="origens" class="form-control" id="cmbAgenciasUC" style="max-width: 200px" data-index="4">
+                            <span class="ant-form-item-children">
+                                <i _ngcontent-serverapp-c3="" class="" style="position: absolute; top: 2px; left: 10px; z-index: 10; border: 3px solid var(--shimaAmarillo); height: 12px; width: 12px; border-radius: 100%"></i></span>
+                            <option value="0">Seleccionar</option>
+                            @foreach ($asientos as $asiento)
+                            <option value="{{$asiento['id']}}">{{$asiento['asiento']}}</option>
+                            @endforeach
+
+
+                            <span class="ant-select-search__field__mirror ng-tns-c15-4 ng-star-inserted"></span>
+                        </select>
+                    </div>
+
+
+
                     <h3>Realiza el pago</h3>
                     <div class="row form-group">
                         <label for="inpdni" class="form-control-label label-title">PAGAR CON PAYPAL</label>

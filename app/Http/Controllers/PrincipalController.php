@@ -23,6 +23,7 @@ use App\models\Venta_detalle;
 use App\models\Order;
 use App\models\ViajeDetalle;
 use App\models\Precios_ruta;
+use App\models\Asiento;
 
 
 use GuzzleHttp\Promise\Create;
@@ -219,10 +220,44 @@ class PrincipalController extends Controller
         $dni = $request->dni;
         $precio = $request->precio;
         $hora = $request->hora_sal;
-        $asiento = $request->asiento;
 
         // $datos = $request->all();
         // dd($datos);
+        $fecha_actual = date("Y-m-d");
+        $hora_actual =date("H:i:s");
+
+        $asientos = Asiento::from('asientos')
+        ->select(
+            'id',
+            'id_minivan',
+            'asiento'
+        )
+        ->where('id_minivan',1)
+        ->get();
+        
+        // dd($asientos);
+        // $hora_salidas = Precios_ruta::from('precios_rutas as pr')
+        //     ->select(
+        //         'pr.id',
+        //         'pr.id_origen',
+        //         'pr.id_destino',
+        //         'pr.precio',
+        //         'pr.hora_salida',
+        //         'o.id'
+        //     )
+        //     ->join('origenes as o', 'id_origen','=','o.id')
+        //     ->where('id_origen', $origens)
+        //     ->where('id_destino', $destinos)
+        //     ->get(); 
+        
+
+        // if($fecha_actual == $fecha){
+        //     if($hora_actual >= $hora_salidas){
+                
+        //     }
+            
+        // }
+        // // dd($hora_salidas, "fecha", $h);
         $hora_salidas = Precios_ruta::from('precios_rutas as pr')
         ->select(
             'pr.id',
@@ -264,7 +299,7 @@ class PrincipalController extends Controller
         // $datosviajes = Order::all();
         // $viaje_detalles = ViajeDetalle::all();
         // dd($datos);
-        return view('pago', compact('origenes', 'destinos', 'fecha', 'dni', 'precio', 'hora_salidas', 'asiento', 'nombres', 'apellidos'));
+        return view('pago', compact('origenes', 'destinos', 'asientos', 'fecha', 'dni', 'precio', 'hora_salidas', 'nombres', 'apellidos'));
     }
 
     public function pagado(Request $request)
