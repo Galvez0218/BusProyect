@@ -127,7 +127,7 @@ class PrincipalController extends Controller
             return view('menu')->with('mensaje', $mensaje);
             /*if(count($existe_usuario) == 1){
                 $pagado = Usuario::select('pagado')->where('dni', $dni_registrado)->get();
-               
+
                 if (empty($x['email'])) {
                     //cambiar el return para segurar el ingresp por login
                     return view('login');
@@ -193,7 +193,7 @@ class PrincipalController extends Controller
         $mes = $mes[(date('m', strtotime($fecha))*1)-1];
         return $dia.', '.$num.' de '.$mes.' del '.$anno;
     }
-     
+
     function conocerDiaSemanaFecha($fecha) {
         $dias = array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado');
         $dia = $dias[date('w', strtotime($fecha))];
@@ -216,7 +216,7 @@ class PrincipalController extends Controller
 
         $nombres = $request->nombres;
         $apellidos = $request->apellidos;
-        
+
         $dni = $request->dni;
         $precio = $request->precio;
         $hora = $request->hora_sal;
@@ -234,7 +234,7 @@ class PrincipalController extends Controller
         )
         ->where('id_minivan',1)
         ->get();
-        
+
         // dd($asientos);
         // $hora_salidas = Precios_ruta::from('precios_rutas as pr')
         //     ->select(
@@ -248,14 +248,14 @@ class PrincipalController extends Controller
         //     ->join('origenes as o', 'id_origen','=','o.id')
         //     ->where('id_origen', $origens)
         //     ->where('id_destino', $destinos)
-        //     ->get(); 
-        
+        //     ->get();
+
 
         // if($fecha_actual == $fecha){
         //     if($hora_actual >= $hora_salidas){
-                
+
         //     }
-            
+
         // }
         // // dd($hora_salidas, "fecha", $h);
         $hora_salidas = Precios_ruta::from('precios_rutas as pr')
@@ -267,10 +267,11 @@ class PrincipalController extends Controller
             'pr.hora_salida',
             'o.id'
         )
+
         ->join('origenes as o', 'id_origen','=','o.id')
         ->where('id_origen', $origens)
         ->where('id_destino', $destinos)
-        ->get(); 
+        ->get();
         foreach ($hora_salidas as $precio) {
             $precio = $precio->precio;
         }
@@ -293,7 +294,7 @@ class PrincipalController extends Controller
 
         $fecha = $this->obtenerFechaEnLetra($fecha);
 
-        
+
 
         // dd($this->obtenerFechaEnLetra($fecha));
         // $datosviajes = Order::all();
